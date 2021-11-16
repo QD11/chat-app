@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  border-color: #dbdbdb;
+  -webkit-appearance: none;
+  max-width: 30%;
+  width: 50%;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 4px;
+}
+
+label {
+  color: #363636;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+button {
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 1rem;
+  background-color: rgb(70, 153, 179);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+form {
+  border-radius: 6px;
+  padding: 16px;
+  align-items: center;
+  
+}

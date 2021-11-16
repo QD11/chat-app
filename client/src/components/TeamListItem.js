@@ -26,7 +26,7 @@ const TeamListItem = ({team}) => {
 
     return (
         <div>
-            {team.description}
+            {/* {team.description} */}
         </div>
     )
 }
