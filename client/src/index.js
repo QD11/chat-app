@@ -16,7 +16,7 @@ export const ActionCableContext = createContext()
 
 ReactDOM.render(
   <Provider store={store}> 
-    // omitted any other providers we may have
+   {/* omitted any other providers we may have */}
     <ActionCableContext.Provider value={CableApp.cable}>
       <App />
     </ActionCableContext.Provider>,
