@@ -1,7 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux'
+import { getData } from './states/teamsSlice'
+
 import MessagesList from './components/MessagesList';
 import TeamListItem from './components/TeamListItem'
+
+import TeamList from './components/teams/TeamList';
+import TeamLayout from './components/teams/TeamLayout'
+
 import Login from './pages/Login'
 
 function App() {
@@ -14,7 +22,6 @@ function App() {
     .then((data) => setTeams(data))
   }, [])
   
-
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -27,7 +34,19 @@ function App() {
    if (!user) return <Login setUser={setUser} />;
   return (
     <Router>
-      {teams.map(team => <TeamListItem key={team.id} team={team}/>)}
+      <Switch>
+         <Route path="/new">
+           <Login/>
+         </Route>
+        <Route path='/teams' >
+          <TeamLayout path='/teams' />
+        </Route>
+      </Switch>
+    
+      {/* <TeamList /> */}
+
+      {/* {teams.map(team => <TeamListItem key={team.id} team={team}/>)}
+
       <Switch>
         <div className="App">
           <Route path="/:team_id">
@@ -37,7 +56,7 @@ function App() {
             <Login/>
           </Route>
         </div>
-      </Switch>
+      </Switch> */}
     </Router>
   );
 }
