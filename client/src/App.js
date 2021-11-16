@@ -9,37 +9,33 @@ import TeamListItem from './components/TeamListItem'
 
 import TeamList from './components/teams/TeamList';
 import TeamLayout from './components/teams/TeamLayout'
-
+import SignupForm from './components/homepage/SignupForm'
 import Login from './pages/Login'
 
 function App() {
-  const [ teams, setTeams] = useState([])
   const [user, setUser] = useState(null);
 
-  useEffect(()=> {
-    fetch("http://localhost:3000/teams")
-    .then(resp => resp.json())
-    .then((data) => setTeams(data))
-  }, [])
-  
-  useEffect(() => {
-    // auto-login
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   // auto-login
+  //   fetch("/me").then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
 
-   if (!user) return <Login setUser={setUser} />;
+    // if (!user) return <Login setUser={setUser} />;
   return (
     <Router>
       <Switch>
-         <Route path="/new">
-           <Login/>
-         </Route>
         <Route path='/teams' >
           <TeamLayout path='/teams' />
+        </Route>
+        <Route path='/signup'>
+          <SignupForm />
+        </Route>
+        <Route path ="/">
+          <Login/>
         </Route>
       </Switch>
     

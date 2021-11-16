@@ -1,24 +1,19 @@
 import React, {useEffect} from 'react'
 import TeamList from './TeamList';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getData } from '../../states/teamsSlice'
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 const TeamLayout = ({path}) => {
     const dispatch = useDispatch()
-    const user_id = 1
+    const userInfo = useSelector(state => state.usersInfo)
 
     useEffect(()=> {
-    fetch(`http://localhost:3000/${user_id}/teams`)
+    fetch(`http://localhost:3000/${userInfo.id}/teams`)
     .then(resp => resp.json())
     .then((data) => dispatch(getData(data)))
-
-    
-
-    }, [user_id])
-
-
+    }, [userInfo])
 
     return (
         <div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-
-
-
+import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux"
+import {getUser} from "../../states/usersSlice"
 
 function LoginForm({ setUser }) {
     const [email, setEmail] = useState("");
@@ -9,7 +9,8 @@ function LoginForm({ setUser }) {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    
+    const dispatch = useDispatch()
+    const history = useHistory()
   
     function handleSubmit(e) {
       e.preventDefault();
@@ -23,7 +24,11 @@ function LoginForm({ setUser }) {
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => setUser(user));
+          r.json().then((user) => {
+            // setUser(user)
+            dispatch(getUser(user))
+            history.push("/teams")
+          });
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
@@ -58,7 +63,7 @@ function LoginForm({ setUser }) {
           {/* {errors.map((err) => (
             <Error key={err}>{err}</Error>
           ))} */}
-       
+      
       </form>
     );
   }
