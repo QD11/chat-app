@@ -16,4 +16,10 @@ class TeamsController < ApplicationController
         render json: teams, each_serializer: LatestMessageSerializer
         # render json: messages
     end
+
+    def teams_messages_specific_to_users
+        user = User.find(params[:user_id])
+        teams = Team.joins(:memberships).where(memberships: {user_id: user.id})
+        render json: teams
+    end
 end

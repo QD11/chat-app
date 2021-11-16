@@ -1,15 +1,9 @@
 import React, {useState, useEffect} from 'react'
+import {useSelector} from 'react-redux'
 import Team from './Team'
 
 const TeamList = () => {
-    const user_id = 1
-    const [teams, setTeams] = useState([])
-
-    useEffect(()=> {
-        fetch(`http://localhost:3000/${user_id}/teams`)
-        .then(resp => resp.json())
-        .then((data) => setTeams(data))
-    }, [])
+    const teams = useSelector(state => state.teamsSlice)
 
     return (
         <div>
