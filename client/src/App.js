@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MessagesList from './components/MessagesList';
 import TeamListItem from './components/TeamListItem'
+import TeamList from './components/teams/TeamList';
 
 function App() {
   const [ teams, setTeams] = useState([])
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <Router>
+      <TeamList />
       {teams.map(team => <TeamListItem key={team.id} team={team}/>)}
       <Switch>
         <div className="App">
