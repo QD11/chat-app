@@ -17,7 +17,7 @@ input {
   border: 1px solid transparent;
   border-color: #dbdbdb;
   -webkit-appearance: none;
-  max-width: 50%;
+  max-width: 30%;
   width: 50%;
   font-size: 1rem;
   line-height: 1.5;
@@ -34,7 +34,9 @@ label {
 
 button {
   cursor: pointer;
+  margin-top: 5px;
   font-size: 1rem;
+  background-color: rgb(70, 153, 179);
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 8px 16px;
@@ -45,4 +47,5 @@ form {
   border-radius: 6px;
   padding: 16px;
   align-items: center;
+  
 }

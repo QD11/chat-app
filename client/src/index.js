@@ -19,7 +19,7 @@ ReactDOM.render(
    {/* omitted any other providers we may have */}
     <ActionCableContext.Provider value={CableApp.cable}>
       <App />
-    </ActionCableContext.Provider>,
+    </ActionCableContext.Provider>
   </Provider>,
   document.getElementById('root')
 )

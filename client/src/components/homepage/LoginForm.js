@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 
 
 
-function LoginForm({ onLogin }) {
-    const [username, setUsername] = useState("");
+function LoginForm({ setUser }) {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -19,11 +19,11 @@ function LoginForm({ onLogin }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => onLogin(user));
+          r.json().then((user) => setUser(user));
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
@@ -33,13 +33,13 @@ function LoginForm({ onLogin }) {
     return (
       <form onSubmit={handleSubmit}>
         
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
-            id="username"
+            id="email"
             autoComplete="off"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           /><br/>
       
           <label htmlFor="password">Password</label>
