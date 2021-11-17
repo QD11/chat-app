@@ -4,24 +4,18 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import MessageList from './MessageList'
 import MessageForm from './MessageForm'
-import {messagesSelectors} from '../../states/messagesSlice'
+import { teamsSelectors } from '../../states/teamsSlice'
 
 
 const MessageTeam = () => {
     const cable = useContext(ActionCableContext)
     const [channel, setChannel] = useState(null)
-    //const [messagesPerTeam, setMessagesPerTeam] = useState([])
     const {team_id} = useParams()
-
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
-    // const teamSlice= useSelector(state => state.teamsSlice)
-    const messages = useSelector(messagesSelectors.selectAll).find(message => message.id === parseInt(team_id)).messages
-    // console.log(teamSlice)
-    // useEffect(() => {
-    //     setMessagesPerTeam(messages)
-    // }, [team_id, userInfo])
-
+    const messages = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id)).messages
+    // console.log(teamInfo)
+    // const messages = useSelector(messagesSelectors.selectAll).find(message => message.id === parseInt(team_id)).messages
 
     useEffect(() => {
         //create a subscription to MessagesChannel
@@ -70,7 +64,7 @@ const MessageTeam = () => {
 
     return (
         <div>
-            <MessageList messages={messages} />
+            {messages.length === 0 || messages ? <MessageList messages={messages} /> : null}
             <MessageForm sendMessage={sendMessage}/>
             {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
         </div>
