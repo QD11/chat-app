@@ -7,13 +7,14 @@ import {
 export const fetchData = createAsyncThunk('teams/fetchTeams', async () => {
     return ["jack", "john"]
 })
-
-const initialState = []
+const teamsAdapter = createEntityAdapter()
+const initialState = teamsAdapter.getInitialState()
 
 const teamsSlice = createSlice({
     name: 'teams',
     initialState,
     reducers: {
+        getTeams: teamsAdapter.addMany, 
         getData(state, action) {
             return [...action.payload]
         },
@@ -38,5 +39,7 @@ const teamsSlice = createSlice({
     }
 })
 
-export const { getData, updateLatestMessage } = teamsSlice.actions
+export const teamsSelectors = teamsAdapter.getSelectors(state => state.teamsSlice)
+
+export const { getTeams, getData, updateLatestMessage } = teamsSlice.actions
 export default teamsSlice.reducer

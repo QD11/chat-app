@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Message from './Message'
 
-const MessageList = ({messages, messagesPerTeam}) => {
+const MessageList = ({messages}) => {
     
     return (
         <div>

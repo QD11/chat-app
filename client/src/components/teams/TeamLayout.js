@@ -2,9 +2,10 @@ import React, {useEffect} from 'react'
 import TeamList from './TeamList';
 import MessageBox from '../messages/MessageBox'
 import { useDispatch, useSelector } from 'react-redux'
-import { getData } from '../../states/teamsSlice'
+import { getTeams } from '../../states/teamsSlice'
 import { getMessagesPerTeam} from '../../states/messagesPerTeamSlice'
 import { Switch, Route, Link } from 'react-router-dom';
+import { addMultipleMessages, messagesSelectors } from '../../states/messagesSlice';
 import styled from 'styled-components'
 
 const TeamLayout = ({path}) => {
@@ -14,11 +15,14 @@ const TeamLayout = ({path}) => {
     useEffect(()=> {
         fetch(`http://localhost:3000/${userInfo.id}/teams`)
         .then(resp => resp.json())
-        .then((data) => dispatch(getData(data)))
+        .then((data) => dispatch(getTeams(data)))
 
         fetch(`http://localhost:3000/${userInfo.id}/teams/all`)
         .then(resp => resp.json())
-        .then((data) => dispatch(getMessagesPerTeam(data)))
+        .then((data) => {
+            dispatch(getMessagesPerTeam(data))
+            dispatch(addMultipleMessages(data))
+        })
     }, [userInfo])
 
     return (

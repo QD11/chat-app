@@ -22,12 +22,13 @@ const messagesSlice = createSlice({
             // }
             const message = data
             messagesAdapter.setOne(state, message)
-        }
+        },
+        addMultipleMessages: messagesAdapter.addMany,
     }
 })
 
-export const { messageReceived } = messagesSlice.actions
-
+export const { messageReceived, addMultipleMessages } = messagesSlice.actions
+export const messagesSelectors = messagesAdapter.getSelectors(state => state.messageSlice)
 export const { selectAll: selectAllMessages } = messagesAdapter.getSelectors((state) => state.messages)
 
 export const selectMessagesByTeam = createSelector(

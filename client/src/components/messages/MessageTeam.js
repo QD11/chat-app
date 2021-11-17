@@ -4,9 +4,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import MessageList from './MessageList'
 import MessageForm from './MessageForm'
-import { updateLatestMessage, getData } from '../../states/teamsSlice'
-import { addMessageToTeam, getMessagesPerTeam } from '../../states/messagesPerTeamSlice'
-import { messageReceived } from '../../states/messagesSlice'
+import {messagesSelectors} from '../../states/messagesSlice'
+
 
 const MessageTeam = () => {
     const cable = useContext(ActionCableContext)
@@ -16,12 +15,9 @@ const MessageTeam = () => {
 
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
-    const messages = useSelector(state => state.messagesPerTeam.find(message => message.id === parseInt(team_id))).messages
-    const messagesPerTeam = useSelector(state => state.messagesPerTeam)
-    const teamSlice= useSelector(state => state.teamsSlice)
-
-    console.log(messages)
-
+    // const teamSlice= useSelector(state => state.teamsSlice)
+    const messages = useSelector(messagesSelectors.selectAll).find(message => message.id === parseInt(team_id)).messages
+    // console.log(teamSlice)
     // useEffect(() => {
     //     setMessagesPerTeam(messages)
     // }, [team_id, userInfo])
@@ -48,8 +44,9 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
-                const newData = [...teamSlice, data]
-                dispatch(updateLatestMessage(newData))
+                //const newData = [...teamSlice, data]
+                // dispatch(updateLatestMessage(newData))
+                // console.log(data)
                 // const messagesPerTeamPayload = {
                 //     id: data.id,
                 //     messagesPerTeam,
@@ -73,7 +70,7 @@ const MessageTeam = () => {
 
     return (
         <div>
-            <MessageList messages={messages} messagesPerTeam={messagesPerTeam}/>
+            <MessageList messages={messages} />
             <MessageForm sendMessage={sendMessage}/>
             {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
         </div>
