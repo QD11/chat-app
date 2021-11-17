@@ -35,11 +35,14 @@ const TeamLayout = ({path}) => {
             </LeftSideDiv>
 
             <Switch>
-                <MidSideDiv>
-                    <Route path={`${path}/:team_id`}>
+                <Route path={`${path}/:team_id`}>
+                    <MidSideDiv>
                         <MessageBox path={path}/>
-                    </Route>
-                </MidSideDiv>
+                    </MidSideDiv>
+                    <RightSideDiv>
+                        //RIght Side of the App
+                    </RightSideDiv>
+                </Route>
                 {/* //create new teams
                 <Route exact path={`${path}/create`}>
                     <h1>bye</h1>
@@ -72,6 +75,12 @@ const MidSideDiv = styled.div.attrs(props => ({
     className: 'MidSideDiv'
 }))`
     width: 65%;
+`
+
+const RightSideDiv = styled.div.attrs(props => ({
+    className: 'RightSideDiv'
+}))`
+    width: 20%;
 `
 
 const LinkNewMessage = styled(Link)`
