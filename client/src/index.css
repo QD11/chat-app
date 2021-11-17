@@ -41,11 +41,26 @@ button {
   border-radius: 6px;
   padding: 8px 16px;
   text-decoration: none;
+  text-emphasis: bold;
+  
+  
+  
 }
 
 form {
   border-radius: 6px;
   padding: 16px;
   align-items: center;
-  
+}
+
+header {
+  background-color: rgb(200, 216, 236);
+}
+
+.navbar {
+  margin: 0px;
+  height: 60px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
