@@ -38,7 +38,7 @@ const MessagesList = () => {
 
     return (
         <div>
-            <button onClick={() => sendMessage(content)}>BUTTON</button>
+            {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
         </div>
     )
 }
