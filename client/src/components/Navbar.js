@@ -1,9 +1,9 @@
 import React from 'react'
 import {useHistory} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import logOutUser from '../states/usersSlice'
+import {logOutUser} from '../states/usersSlice'
 
-function Navbar({user, handleLogout}) {
+function Navbar() {
     const history = useHistory()
     const userInfo = useSelector(state => state.usersInfo)
     const dispatch = useDispatch()
@@ -11,17 +11,14 @@ function Navbar({user, handleLogout}) {
     const onLogOut = () => {
         fetch('/logout', {
             method: 'DELETE',   
-        })
+        }).then(() => dispatch(logOutUser()))
         history.push('/')
-        // dispatch(logOutUser)
-        
     }
-    console.log(user)
+
     return (
         <header className="navbar">
-         <p>{userInfo.name}</p>
+            <p>{userInfo.name}</p>
             <button onClick={onLogOut}>Log Out</button>
-            
         </header>
     )
 }

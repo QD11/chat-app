@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { getData } from './states/teamsSlice'
+import { getUser } from './states/usersSlice'
 import MessagesList from './components/MessagesList';
 import TeamListItem from './components/TeamListItem'
 import TeamList from './components/teams/TeamList';
@@ -11,24 +12,17 @@ import Login from './pages/Login'
 import Navbar from './components/Navbar'
 
 function App() {
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => dispatch(getUser(user)));
       }
     });
   }, []);
 
-  const handleLogin = (user) => {
-    setUser(user);
-  }
-  
-  const handleLogout = () => {
-    setUser(null)
-  }
     // if (!user) return <Login setUser={setUser} />;
   return (
     <Router>
@@ -36,13 +30,13 @@ function App() {
       <Switch>
         <Route path='/teams' >
           <TeamLayout path='/teams' />
-          <Navbar user={user} handleLogout={handleLogout} />
+          <Navbar />
         </Route>
         <Route path='/signup'>
           <SignupForm />
         </Route>
         <Route path ="/">
-          <Login handleLogin={handleLogin}/>
+          <Login />
         </Route>
       </Switch>
     

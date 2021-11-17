@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux"
 import {getUser} from "../../states/usersSlice"
 
-function LoginForm({ setUser, handleLogin }) {
+function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
