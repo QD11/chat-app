@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import { Switch, Route, Link } from 'react-router-dom';
 
 const Team = ({team}) => {
-
-    console.log(team)
-
     return (
         <LinkTeam to={`/teams/${team.id}`}>
             <span>{team.name}</span>

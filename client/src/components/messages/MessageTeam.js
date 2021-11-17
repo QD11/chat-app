@@ -4,15 +4,28 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import MessageList from './MessageList'
 import MessageForm from './MessageForm'
+import { updateLatestMessage, getData } from '../../states/teamsSlice'
+import { addMessageToTeam, getMessagesPerTeam } from '../../states/messagesPerTeamSlice'
+import { messageReceived } from '../../states/messagesSlice'
 
 const MessageTeam = () => {
     const cable = useContext(ActionCableContext)
     const [channel, setChannel] = useState(null)
+    //const [messagesPerTeam, setMessagesPerTeam] = useState([])
     const {team_id} = useParams()
 
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
     const messages = useSelector(state => state.messagesPerTeam.find(message => message.id === parseInt(team_id))).messages
+    const messagesPerTeam = useSelector(state => state.messagesPerTeam)
+    const teamSlice= useSelector(state => state.teamsSlice)
+
+    console.log(messages)
+
+    // useEffect(() => {
+    //     setMessagesPerTeam(messages)
+    // }, [team_id, userInfo])
+
 
     useEffect(() => {
         //create a subscription to MessagesChannel
@@ -26,25 +39,41 @@ const MessageTeam = () => {
         return () => {
             channel.unsubscribe()
         }
-    }, [team_id])
+    }, [userInfo])
+
+    useEffect(() => {
+        cable.subscriptions.create({
+            channel: "MessagesChannel",
+            id: parseInt(team_id)
+        },
+        {
+            received: (data) => {
+                const newData = [...teamSlice, data]
+                dispatch(updateLatestMessage(newData))
+                // const messagesPerTeamPayload = {
+                //     id: data.id,
+                //     messagesPerTeam,
+                //     userInfo,
+                //     data
+                // }
+                // dispatch(messageReceived(messagesPerTeamPayload))
+            }
+        }
+        )
+    }, [userInfo, dispatch, team_id])
 
     const {user_id} = {
         user_id: userInfo.id
     }
 
-    const {content} = {
-        content: "hi Xinyi"
-    }
-
     const sendMessage = (content) => {
         const data = { team_id, user_id, content }
-        console.log(data)
         channel.send(data)
     }
 
     return (
         <div>
-            <MessageList messages={messages} />
+            <MessageList messages={messages} messagesPerTeam={messagesPerTeam}/>
             <MessageForm sendMessage={sendMessage}/>
             {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
         </div>

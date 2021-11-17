@@ -20,7 +20,7 @@ const MessageForm = ({sendMessage}) => {
                 placeholder="Message...">
 
                 </input>
-                <button type="submit"></button>
+                <button type="submit" disabled={chatInput? false:true}>Submit</button>
             </ChatForm>
         </>
     )

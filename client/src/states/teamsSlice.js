@@ -16,6 +16,17 @@ const teamsSlice = createSlice({
     reducers: {
         getData(state, action) {
             return [...action.payload]
+        },
+        updateLatestMessage(state, action) {
+            const oldData = [...action.payload].slice(0,-1)
+            const payLoad = [...action.payload].at(-1)
+            const numInt = oldData.findIndex(element => element.id === payLoad.team_id)
+            const replacedData = [...oldData][numInt]
+            oldData[numInt] = {
+                ...replacedData,
+                latest_message: payLoad
+            }
+            return oldData
         }
     },
     extraReducers: builder => {
@@ -27,5 +38,5 @@ const teamsSlice = createSlice({
     }
 })
 
-export const { getData } = teamsSlice.actions
+export const { getData, updateLatestMessage } = teamsSlice.actions
 export default teamsSlice.reducer

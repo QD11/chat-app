@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import { getData } from './states/teamsSlice'
 import { getUser } from './states/usersSlice'
-import MessagesList from './components/MessagesList';
-import TeamListItem from './components/TeamListItem'
-import TeamList from './components/teams/TeamList';
 import TeamLayout from './components/teams/TeamLayout'
 import SignupForm from './components/homepage/SignupForm'
 import Login from './pages/Login'
@@ -19,6 +15,7 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => dispatch(getUser(user)));
+        //history.push('/teams')
       }
     });
   }, []);

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 const Message = ({message}) => {
     const userInfo = useSelector(state => state.usersInfo)
-    console.log(message)
     const date = (new Date()).toISOString().split('T')[0]
     const content = message.content
     const name = message.user.name
