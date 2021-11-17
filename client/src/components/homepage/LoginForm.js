@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux"
 import {getUser} from "../../states/usersSlice"
 
-function LoginForm({ setUser }) {
+function LoginForm({ setUser, handleLogin }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -21,7 +21,12 @@ function LoginForm({ setUser }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-      }).then((r) => {
+      })
+      // .then(r => r.json())
+      // .then(user => handleLogin(user))
+      // history.push('/teams')
+      
+      .then((r) => {
         setIsLoading(false);
         if (r.ok) {
           r.json().then((user) => {
