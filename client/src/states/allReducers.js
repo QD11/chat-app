@@ -7,7 +7,8 @@ import usersSliceReducer from './usersSlice'
 const allReducers = combineReducers({
     messageSlice : messageSliceReducer,
     teamsSlice : teamsSliceReducer,
-    usersInfo : usersSliceReducer
+    usersInfo : usersSliceReducer,
+    messagesPerTeam: messagesPerTeamSliceReducer
 })
 
 export default allReducers;

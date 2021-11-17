@@ -1,6 +1,5 @@
-class LatestMessageSerializer < TeamSerializer
-  attributes :latest_message, :memberships
-
+class LatestMessageSerializer < ActiveModel::Serializer
+  attributes :id, :name, :description, :latest_message, :memberships
 
   # has_many :messages
   def memberships
