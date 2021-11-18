@@ -38,6 +38,7 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
+                console.log(data)
                 const userMatch = team.users.find(user => user.id === data.user_id)
                 const newData = {
                     id: data.id,
@@ -52,7 +53,7 @@ const MessageTeam = () => {
                 }
                 dispatch(addMessage(newData))
             }})
-    }, [userInfo, dispatch])
+    }, [userInfo, dispatch, team_id])
 
     const {user_id} = {
         user_id: userInfo.id
@@ -60,6 +61,7 @@ const MessageTeam = () => {
 
     const sendMessage = (content) => {
         const data = { team_id, user_id, content }
+        console.log('send', data)
         channel.send(data)
     }
 
