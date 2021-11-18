@@ -5,7 +5,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 const Team = ({team}) => {
 
     return (
-        <LinkTeam to={`/teams/${team.id}`}>
+        <LinkTeam className="team" to={`/teams/${team.id}`}>
             <span>{team.name}</span>
             <span>{team.memberships.map(member => member.user.name)}</span>
             <span>{team.messages.at(-1).content.length < 8 ? team.messages.at(-1).content : team.messages.at(-1).content.substring(0,8) + "..."}</span>

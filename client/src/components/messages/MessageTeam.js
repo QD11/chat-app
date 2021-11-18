@@ -63,8 +63,9 @@ const MessageTeam = () => {
     }
 
     return (
-        <div>
-            {messages.length === 0 || messages ? <MessageList messages={messages} /> : null}
+
+        <div className="message-team">
+            <MessageList messages={messages} />
             <MessageForm sendMessage={sendMessage}/>
             {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
         </div>
