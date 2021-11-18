@@ -38,7 +38,6 @@ const TeamLayout = ({path}) => {
                         <MessageBox path={path}/>
                     </MidSideDiv>
                     <RightSideDiv>
-                        
                         <TeamMembers />
                     </RightSideDiv>
                 </Route>
