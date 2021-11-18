@@ -77,3 +77,10 @@ header {
 ul {
   list-style-type: none;
 }
+
+.login-container {
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  width: 75%;
+}
