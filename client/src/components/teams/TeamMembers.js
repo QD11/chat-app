@@ -12,7 +12,7 @@ function TeamMembers() {
     // console.log(teams)
     return (
         <div className="team-members">
-            <h3>Chat Participants</h3>
+            <h3>Chat Members</h3>
            
              <ul>
                 {team.memberships.map(member => <TeamMember member={member}/>)}
