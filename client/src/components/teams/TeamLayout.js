@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import TeamList from './TeamList';
+import TeamMembers from './TeamMembers';
 import MessageBox from '../messages/MessageBox'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTeams } from '../../states/teamsSlice'
@@ -37,7 +38,8 @@ const TeamLayout = ({path}) => {
                         <MessageBox path={path}/>
                     </MidSideDiv>
                     <RightSideDiv>
-                        //RIght Side of the App
+                        
+                        <TeamMembers />
                     </RightSideDiv>
                 </Route>
             </Switch>
@@ -59,6 +61,7 @@ const LeftSideDiv = styled.div.attrs(props => ({
     flex-direction: column;
     width: 15%;
     align-items: center;
+    
 `
 
 const MidSideDiv = styled.div.attrs(props => ({

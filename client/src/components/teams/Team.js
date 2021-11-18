@@ -8,7 +8,7 @@ const Team = ({team}) => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === team.id)
 
     return (
-        <LinkTeam to={`/teams/${team.id}`}>
+        <LinkTeam className="team" to={`/teams/${team.id}`}>
             <span>{team.name}</span>
             <span>{team.users.map(user => user.name)}</span>
             {messages.length? <span>{messages.at(-1).content.length < 8 ? messages.at(-1).content : messages.at(-1).content.substring(0,8) + "..."}</span> : null}

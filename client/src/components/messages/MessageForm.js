@@ -11,7 +11,7 @@ const MessageForm = ({sendMessage}) => {
 
     return (
         <>
-            <ChatForm onSubmit={handleSubmit}>
+            <ChatForm className="message-form" onSubmit={handleSubmit}>
                 <input 
                 className="ChatInput" 
                 type="text" 

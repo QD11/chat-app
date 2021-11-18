@@ -56,10 +56,24 @@ header {
   background-color: rgb(200, 216, 236);
 }
 
-.navbar {
-  margin: 0px;
-  height: 60px;
-  display: flex;
-  justify-content: right;
-  align-items: center;
+/* .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+} */
+
+.message-team {
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+}
+
+.team {
+  position: fixed;
+  bottom: 50;
+}
+
+ul {
+  list-style-type: none;
 }
