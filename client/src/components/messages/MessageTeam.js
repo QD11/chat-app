@@ -14,7 +14,7 @@ const MessageTeam = () => {
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
     const messages = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id)).messages
-    // console.log(teamInfo)
+    console.log(messages)
     // const messages = useSelector(messagesSelectors.selectAll).find(message => message.id === parseInt(team_id)).messages
 
     useEffect(() => {

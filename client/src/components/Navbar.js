@@ -5,12 +5,12 @@ import {logOutUser} from '../states/usersSlice'
 import Avatar from 'react-avatar';
 import Modal from './Modal'
 
-function Navbar() {
+function Navbar({image, setImage}) {
     const history = useHistory()
     const userInfo = useSelector(state => state.usersInfo)
     const dispatch = useDispatch()
     const [modalOpen, setModalOpen] = useState(false);
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
 
     const onLogOut = () => {
         fetch('/logout', {

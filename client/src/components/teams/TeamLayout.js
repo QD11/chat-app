@@ -9,7 +9,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { addMultipleMessages, messagesSelectors } from '../../states/messagesSlice';
 import styled from 'styled-components'
 
-const TeamLayout = ({path}) => {
+const TeamLayout = ({path, image, setImage}) => {
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
 
@@ -41,7 +41,7 @@ const TeamLayout = ({path}) => {
                         <MessageBox path={path}/>
                     </MidSideDiv>
                     <RightSideDiv>                       
-                        <TeamMembers />
+                        <TeamMembers image={image} setImage={setImage}/>
                     </RightSideDiv>
                 </Route>
             </Switch>

@@ -9,7 +9,7 @@ import Navbar from './components/Navbar'
 
 function App() {
   const dispatch = useDispatch()
-  const [memberImage, setMemberImage] = useState("")
+  const [image, setImage] = useState("")
 
   useEffect(() => {
     // auto-login
@@ -27,8 +27,8 @@ function App() {
       
       <Switch>
         <Route path='/teams' >
-          <TeamLayout path='/teams' />
-          <Navbar />
+          <TeamLayout  path='/teams' image={image} setImage={setImage}/>
+          <Navbar image={image} setImage={setImage}/>
         </Route>
         <Route path='/signup'>
           <SignupForm />

@@ -5,7 +5,7 @@ import {teamsSelectors} from '../../states/teamsSlice'
 import {useParams} from 'react-router-dom'
 import TeamMember from './TeamMember';
 
-function TeamMembers() {
+function TeamMembers({image, setImage}) {
     const {team_id} = useParams()
     const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
     
@@ -15,7 +15,7 @@ function TeamMembers() {
             <h3>Chat Members</h3>
            
              <ul>
-                {team.memberships.map(member => <TeamMember member={member}/>)}
+                {team.memberships.map(member => <TeamMember member={member} image={image} setImage={setImage}/>)}
             </ul>
            
             {/* <Avatar name="Thomas Nguyen" size="50" round={true}/> */}
