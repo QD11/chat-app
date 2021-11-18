@@ -16,7 +16,6 @@ const MessageTeam = () => {
     const userInfo = useSelector(state => state.usersInfo)
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
     const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
-    console.log(team)
 
     useEffect(() => {
         //create a subscription to MessagesChannel

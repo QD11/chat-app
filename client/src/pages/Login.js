@@ -8,7 +8,7 @@ function Login() {
     // const [showLogin, setShowLogin] = useState(true);
 
     return (
-        <div>
+        <div className="login-container">
           <LoginForm />
           <p>
           Don't have an account? &nbsp;

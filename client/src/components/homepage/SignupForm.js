@@ -76,9 +76,9 @@ return (
         /><br/> */}
         <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
 
-        {/* {errors.map((err) => (
-          <error key={err}>{err}</error>
-        ))} */}
+        {errors.map((err) => (
+          <p style={{color: "red"}} key={err}>{err}</p>
+        ))}
 
     </form>
     <button onClick={() => history.push('/')}>Cancel</button>
