@@ -4,7 +4,7 @@ import MessageTeam from './MessageTeam'
 
 const MessageBox = ({path}) => {
     return (
-        <>
+        <div>
             <Switch>
                 //create new teams
                 <Route exact path={`${path}/create`}>
@@ -15,7 +15,7 @@ const MessageBox = ({path}) => {
                     <MessageTeam />
                 </Route>
             </Switch>
-        </>
+        </div>
     )
 }
 

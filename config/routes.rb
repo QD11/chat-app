@@ -11,7 +11,5 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   
   mount ActionCable.server => '/cable'
-  get "/hello", to: "application#hello_world"
-  get "/:user_id/teams", to: "teams#teams_specific_to_user"
-  get "/:user_id/teams/all", to: "teams#teams_messages_specific_to_users"
+  get "/:user_id/teams/", to: "teams#teams_messages_specific_to_users"
 end

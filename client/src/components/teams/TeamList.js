@@ -5,11 +5,11 @@ import {teamsSelectors} from '../../states/teamsSlice'
 
 
 const TeamList = () => {
-    const teams = useSelector(teamsSelectors.selectAll)
+    const teamsInfo = useSelector(teamsSelectors.selectAll)
     
     return (
         <div>
-            {teams.map(team => <Team key={team.id} team={team}/>)}
+            {teamsInfo.map(team => <Team key={team.id} team={team}/>)}
         </div>
     )
 }
