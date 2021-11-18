@@ -5,7 +5,7 @@ import CreateTeam from '../teams/CreateTeam'
 import styled from 'styled-components'
 import TeamMembers from '../teams/TeamMembers'
 
-const MessageBox = ({path}) => {
+const MessageBox = ({path, image, setImage}) => {
     return (
         <>
             <Switch>
@@ -22,7 +22,7 @@ const MessageBox = ({path}) => {
                         <MessageTeam />
                     </MidSideDiv>
                     <RightSideDiv>
-                        <TeamMembers />
+                        <TeamMembers image={image} setImage={setImage}/>
                     </RightSideDiv>
                 </Route>
             </Switch>

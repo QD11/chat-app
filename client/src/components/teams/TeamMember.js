@@ -4,13 +4,13 @@ import Avatar from 'react-avatar';
 function TeamMember({member, image}) {
     return (
         <div>
-                 <li>{member.user.name}</li>
-                 <Avatar 
-                 name={member.user.name} 
-                 size="50" 
-                 round={true}
-                 src={image}
-                 />
+            <li>{member.name}</li>
+            <Avatar 
+            name={member.name} 
+            size="50" 
+            round={true}
+            src={image}
+            />
         </div>
     )
 }
