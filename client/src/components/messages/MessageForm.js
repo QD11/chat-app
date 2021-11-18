@@ -1,12 +1,18 @@
 import React, {useState} from 'react'
+import { useEffect } from 'react/cjs/react.development'
 import styled from 'styled-components'
 
-const MessageForm = ({sendMessage}) => {
+const MessageForm = ({sendMessage, team_id}) => {
     const [chatInput, setChatInput] = useState("")
+
+    useEffect(() => {
+        setChatInput("")
+    }, [team_id])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         sendMessage(chatInput)
+        setChatInput("")
     }
 
     return (

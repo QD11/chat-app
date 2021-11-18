@@ -31,7 +31,6 @@ const TeamLayout = ({path}) => {
                 </LinkNewMessage>
                 <TeamList />
             </LeftSideDiv>
-
             <Switch>
                 <Route path={`${path}/:team_id`}>
                     <MidSideDiv>
@@ -42,7 +41,6 @@ const TeamLayout = ({path}) => {
                     </RightSideDiv>
                 </Route>
             </Switch>
-            
         </SplitDiv>
     )
 }

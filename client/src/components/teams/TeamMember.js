@@ -5,7 +5,7 @@ function TeamMember({member}) {
     return (
         <div>
             <li>{member.name}</li>
-            <Avatar name={member.name} size="50" round={true}/>
+            <Avatar key={member.id} name={member.name} size="50" round={true}/>
         </div>
     )
 }

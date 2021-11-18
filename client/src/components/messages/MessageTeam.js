@@ -39,9 +39,7 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
-                console.log(data)
                 const userMatch = team.users.find(user => user.id === data.user_id)
-                console.log(userMatch)
                 const newData = {
                     id: data.id,
                     content: data.content,
@@ -54,19 +52,7 @@ const MessageTeam = () => {
                     user: {...userMatch}
                 }
                 dispatch(addMessage(newData))
-                // const newMessage = {
-                //     ...data, 
-                //     user: userInfo
-                // }
-                // const newData = {
-                //     ...team,
-                //     messages: [...team.messages, newMessage]
-                // }
-                
-                // dispatch(updateTeam([team_id, newData]))
-            }
-        }
-        )
+            }})
     }, [userInfo, dispatch])
 
     const {user_id} = {
@@ -75,15 +61,13 @@ const MessageTeam = () => {
 
     const sendMessage = (content) => {
         const data = { team_id, user_id, content }
-        // console.log(data)
         channel.send(data)
     }
 
     return (
         <div>
             {messages.length ? <MessageList messages={messages} /> : null}
-            <MessageForm sendMessage={sendMessage}/>
-            {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
+            <MessageForm sendMessage={sendMessage} team_id={team_id}/>
         </div>
     )
 }
