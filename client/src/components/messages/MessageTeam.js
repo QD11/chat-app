@@ -69,7 +69,7 @@ const MessageTeam = () => {
     }
 
     return (
-        <div>
+        <div className="message-team">
             <MessageList messages={messages} />
             <MessageForm sendMessage={sendMessage}/>
             {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}

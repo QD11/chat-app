@@ -56,9 +56,24 @@ header {
   background-color: rgb(200, 216, 236);
 }
 
-.navbar {
+/* .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  /* hello */
+
+} */
+
+.message-team {
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+}
+
+.team {
+  position: fixed;
+  bottom: 50;
+}
+
+ul {
+  list-style-type: none;
 }
