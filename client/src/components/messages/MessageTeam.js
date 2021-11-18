@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import MessageList from './MessageList'
 import MessageForm from './MessageForm'
-import { teamsSelectors } from '../../states/teamsSlice'
+import { teamsSelectors, updateTeam } from '../../states/teamsSlice'
+import { messagesSelectors, addMessage } from '../../states/messagesSlice'
 
 
 const MessageTeam = () => {
@@ -13,9 +14,9 @@ const MessageTeam = () => {
     const {team_id} = useParams()
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
-    const messages = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id)).messages
-    // console.log(teamInfo)
-    // const messages = useSelector(messagesSelectors.selectAll).find(message => message.id === parseInt(team_id)).messages
+    const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
+    const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
+    console.log(team)
 
     useEffect(() => {
         //create a subscription to MessagesChannel
@@ -29,7 +30,7 @@ const MessageTeam = () => {
         return () => {
             channel.unsubscribe()
         }
-    }, [userInfo])
+    }, [userInfo, team_id])
 
     useEffect(() => {
         cable.subscriptions.create({
@@ -38,20 +39,35 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
-                //const newData = [...teamSlice, data]
-                // dispatch(updateLatestMessage(newData))
-                // console.log(data)
-                // const messagesPerTeamPayload = {
-                //     id: data.id,
-                //     messagesPerTeam,
-                //     userInfo,
-                //     data
+                console.log(data)
+                const userMatch = team.users.find(user => user.id === data.user_id)
+                console.log(userMatch)
+                const newData = {
+                    id: data.id,
+                    content: data.content,
+                    created_at: data.created_at,
+                    team: {
+                        id: team.id,
+                        name: team.name,
+                        description: team.description
+                    },
+                    user: {...userMatch}
+                }
+                dispatch(addMessage(newData))
+                // const newMessage = {
+                //     ...data, 
+                //     user: userInfo
                 // }
-                // dispatch(messageReceived(messagesPerTeamPayload))
+                // const newData = {
+                //     ...team,
+                //     messages: [...team.messages, newMessage]
+                // }
+                
+                // dispatch(updateTeam([team_id, newData]))
             }
         }
         )
-    }, [userInfo, dispatch, team_id])
+    }, [userInfo, dispatch])
 
     const {user_id} = {
         user_id: userInfo.id
@@ -59,12 +75,13 @@ const MessageTeam = () => {
 
     const sendMessage = (content) => {
         const data = { team_id, user_id, content }
+        // console.log(data)
         channel.send(data)
     }
 
     return (
         <div>
-            {messages.length === 0 || messages ? <MessageList messages={messages} /> : null}
+            {messages.length ? <MessageList messages={messages} /> : null}
             <MessageForm sendMessage={sendMessage}/>
             {/* <button onClick={() => sendMessage(content)}>BUTTON</button> */}
         </div>

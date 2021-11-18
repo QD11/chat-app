@@ -9,7 +9,7 @@ const TeamList = () => {
     
     return (
         <div>
-            {teamsInfo.map(team => <Team key={team.id} team={team}/>)}
+            {teamsInfo.length !== 0 || teamsInfo ? teamsInfo.map(team => <Team key={team.id} team={team}/>) : null}
         </div>
     )
 }

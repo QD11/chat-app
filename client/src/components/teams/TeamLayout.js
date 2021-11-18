@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTeams } from '../../states/teamsSlice'
 import { getMessagesPerTeam} from '../../states/messagesPerTeamSlice'
 import { Switch, Route, Link } from 'react-router-dom';
-import { addMultipleMessages, messagesSelectors } from '../../states/messagesSlice';
+import { getMessages, messagesSelectors } from '../../states/messagesSlice';
 import styled from 'styled-components'
 
 const TeamLayout = ({path}) => {
@@ -17,12 +17,9 @@ const TeamLayout = ({path}) => {
         .then(resp => resp.json())
         .then((data) => dispatch(getTeams(data)))
 
-        // fetch(`http://localhost:3000/${userInfo.id}/teams/all`)
-        // .then(resp => resp.json())
-        // .then((data) => {
-        //     dispatch(getMessagesPerTeam(data))
-        //     dispatch(addMultipleMessages(data))
-        // })
+        fetch(`http://localhost:3000/${userInfo.id}/teams/messages`)
+        .then(resp => resp.json())
+        .then((data) => dispatch(getMessages(data)))
     }, [userInfo])
 
     return (

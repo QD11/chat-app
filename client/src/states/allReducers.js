@@ -5,7 +5,7 @@ import messagesPerTeamSliceReducer from './messagesPerTeamSlice'
 import usersSliceReducer from './usersSlice'
 
 const allReducers = combineReducers({
-    //messageSlice : messageSliceReducer,
+    messages : messageSliceReducer,
     teamsInfo : teamsSliceReducer,
     usersInfo : usersSliceReducer,
     //messagesPerTeam: messagesPerTeamSliceReducer
