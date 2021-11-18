@@ -5,16 +5,16 @@ import {teamsSelectors} from '../../states/teamsSlice'
 import {useParams} from 'react-router-dom'
 import TeamMember from './TeamMember';
 
-function TeamMembers() {
+function TeamMembers({image, setImage}) {
     const {team_id} = useParams()
     const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
     
     // console.log(teams)
     return (
         <div className="team-members">
-            <h3>Chat Participants</h3>
-            <ul>
-                {team.users.map(member => <TeamMember member={member} key={member.id}/>)}
+             <h3>Chat Members</h3>
+             <ul>
+                {team.memberships.map(member => <TeamMember member={member} image={image} setImage={setImage}/>)}
             </ul>
         </div>
     )

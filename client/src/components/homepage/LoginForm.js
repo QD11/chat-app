@@ -6,13 +6,14 @@ import {getUser} from "../../states/usersSlice"
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch()
     const history = useHistory()
-  
+    console.log(errors)
     function handleSubmit(e) {
+      
       e.preventDefault();
       setIsLoading(true);
       fetch("/login", {
@@ -35,7 +36,7 @@ function LoginForm() {
             history.push("/teams")
           });
         } else {
-          r.json().then((err) => setErrors(err.errors));
+          r.json().then((error) => setErrors(error));
         }
       });
     }
@@ -60,7 +61,7 @@ function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-            <br/>
+           <p style={{color: "red"}}>{errors.errors}</p>
           <button variant="fill" color="primary" type="submit">
             {isLoading ? "Loading..." : "Login"}
           </button>
@@ -68,7 +69,7 @@ function LoginForm() {
           {/* {errors.map((err) => (
             <Error key={err}>{err}</Error>
           ))} */}
-      
+          {console.log(errors.errors)}
       </form>
     );
   }

@@ -8,7 +8,7 @@ import { getMessages } from '../../states/messagesSlice';
 import styled from 'styled-components'
 import { ActionCableContext } from '../../index'
 
-const TeamLayout = ({path}) => {
+const TeamLayout = ({path, image, setImage}) => {
     const cable = useContext(ActionCableContext)
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
@@ -45,7 +45,7 @@ const TeamLayout = ({path}) => {
             </LeftSideDiv>
             <Switch>
                 <Route path={`${path}/:team_id`}>
-                    <MessageBox path={path}/>
+                    <MessageBox path={path} image={image} setImage={setImage}/>
                 </Route>
             </Switch>
         </SplitDiv>
