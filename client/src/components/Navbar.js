@@ -2,6 +2,7 @@ import React from 'react'
 import {useHistory} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import {logOutUser} from '../states/usersSlice'
+import {FaUserCircle} from 'react-icons/fa'
 
 function Navbar() {
     const history = useHistory()
@@ -17,7 +18,7 @@ function Navbar() {
 
     return (
         <header className="navbar">
-            <p>{userInfo.name}</p>
+            <p>{userInfo.name}<FaUserCircle size={40} /></p>
             <button onClick={onLogOut}>Log Out</button>
         </header>
     )
