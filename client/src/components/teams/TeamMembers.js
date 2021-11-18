@@ -14,7 +14,7 @@ function TeamMembers() {
         <div className="team-members">
             <h3>Chat Participants</h3>
             <ul>
-                {team.users.map(member => <TeamMember member={member}/>)}
+                {team.users.map(member => <TeamMember member={member} key={member.id}/>)}
             </ul>
         </div>
     )

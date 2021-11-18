@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext, useState} from 'react'
 import TeamList from './TeamList';
-import TeamMembers from './TeamMembers';
 import MessageBox from '../messages/MessageBox'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTeams } from '../../states/teamsSlice'
-import { getMessagesPerTeam} from '../../states/messagesPerTeamSlice'
+import { getTeams, addTeam } from '../../states/teamsSlice'
 import { Switch, Route, Link } from 'react-router-dom';
-import { getMessages, messagesSelectors } from '../../states/messagesSlice';
+import { getMessages } from '../../states/messagesSlice';
 import styled from 'styled-components'
+import { ActionCableContext } from '../../index'
 
 const TeamLayout = ({path}) => {
+    const cable = useContext(ActionCableContext)
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
 
@@ -22,6 +22,18 @@ const TeamLayout = ({path}) => {
         .then(resp => resp.json())
         .then((data) => dispatch(getMessages(data)))
     }, [userInfo])
+
+    useEffect(() => {
+        cable.subscriptions.create({
+            channel: 'NewTeamChannel'
+        },
+        {
+            received: (data) => {
+                if (data.users.find(user => user.id === userInfo.id)) {
+                    dispatch(addTeam(data))
+                }}
+        })
+    }, [userInfo, dispatch])
 
     return (
         <SplitDiv>

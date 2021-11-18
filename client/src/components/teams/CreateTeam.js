@@ -14,35 +14,23 @@ const CreateTeam = () => {
     const userInfo = useSelector(state => state.usersInfo)
     const [channel, setChannel] = useState(null)
     const [users, setUsers] = useState([])
+    const [initialUsers, setInitialUsers] = useState([])
     const [members, setMembers] = useState([])
     const [searchFilter, setSearchFilter] = useState('')
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        users: []
+        // users: [userInfo]
     })
 
     useEffect(() => {
         fetch("http://localhost:3000/users")
         .then(resp => resp.json())
-        .then(data => setUsers(sortByName(data)))
-    }, [])
-
-
-    useEffect(() => {
-        //create a subscription to NewTeamChannel
-        const channel = cable.subscriptions.create({
-            channel: 'NewTeamChannel'
+        .then(data => {
+            setUsers(sortByName(data.filter(user => user.id !== userInfo.id)))
+            setInitialUsers(sortByName(data.filter(user => user.id !== userInfo.id)))
         })
-        //save the subscription to state channel
-        setChannel(channel)
-        //unsubscribe
-        return () => {
-            channel.unsubscribe()
-        }
     }, [userInfo])
-
-
 
     const addToMembers = (member) => {
         setMembers(members => {
@@ -66,23 +54,64 @@ const CreateTeam = () => {
         })
     }
 
+    const handleFormChange = (e) => {
+        setFormData(formData => {
+            return({
+            ...formData,
+            [e.target.name] : e.target.value
+        })})
+    }
+
+    useEffect(() => { 
+        //create a subscription to NewTeamChannel
+        const channel = cable.subscriptions.create({
+            channel: 'NewTeamChannel'
+        })
+        //save the subscription to state channel
+        setChannel(channel)
+        //unsubscribe
+        return () => {
+            channel.unsubscribe()
+        }
+    }, [userInfo])
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        const newUsers = [userInfo].concat(members)
+        const data = {
+            name: formData.name,
+            description: formData.description,
+            users: newUsers
+        }
+        channel.send(data)
+        //reset the states
+        setFormData({
+            name: '',
+            description: ''
+        })
+        setMembers([])
+        setSearchFilter('')
+        setUsers(initialUsers)
+    }
+
     const filteredFriends = users.filter(user => user.name.toLowerCase().includes(searchFilter.toLowerCase()))
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleFormSubmit}>
+                <button type="submit" disabled={members.length === 0 || !formData.name || !formData.description ? true: false}>CREATE</button>
                 <label>Chat Name</label>
-                <input type="text" name="name"></input>
+                <input type="text" name="name" onChange={handleFormChange} value={formData.name}></input>
                 {/*  */}
                 <label>Description</label>
-                <input type="text" name="description"></input>
+                <input type="text" name="description" onChange={handleFormChange} value={formData.description}></input>
                 {/*  */}
                 <label>Add your friends!</label>
                 <input type="search" onChange={e => setSearchFilter(e.target.value)} value={searchFilter}></input>
-                {filteredFriends.map(user => <div onClick={() => addToMembers(user)}>{user.name}</div>)}
+                {filteredFriends.map(user => <div key={user.id} onClick={() => addToMembers(user)}>{user.name}</div>)}
                 <br/>
                 <label>Friends!</label>
-                {members.map(member => <div onClick={() => addToUsers(member)}>{member.name}</div>)}
+                {members.map(member => <div key={member.id} onClick={() => addToUsers(member)}>{member.name}</div>)}
             </form>
         </div>
     )
