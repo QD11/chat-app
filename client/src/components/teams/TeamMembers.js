@@ -12,13 +12,10 @@ function TeamMembers({image, setImage}) {
     // console.log(teams)
     return (
         <div className="team-members">
-            <h3>Chat Members</h3>
-           
+             <h3>Chat Members</h3>
              <ul>
                 {team.memberships.map(member => <TeamMember member={member} image={image} setImage={setImage}/>)}
             </ul>
-           
-            {/* <Avatar name="Thomas Nguyen" size="50" round={true}/> */}
         </div>
     )
 }

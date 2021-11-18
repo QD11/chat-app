@@ -11,6 +11,8 @@ const messagesSlice = createSlice({
     name: 'messages',
     initialState,
     reducers: {
+        getMessages: messagesAdapter.addMany,
+        addMessage: messagesAdapter.addOne,
         messageReceived(state, action) {
             const data = action.payload
             console.log(data)
@@ -27,13 +29,7 @@ const messagesSlice = createSlice({
     }
 })
 
-export const { messageReceived, addMultipleMessages } = messagesSlice.actions
-export const messagesSelectors = messagesAdapter.getSelectors(state => state.messageSlice)
-export const { selectAll: selectAllMessages } = messagesAdapter.getSelectors((state) => state.messages)
+export const messagesSelectors = messagesAdapter.getSelectors(state => state.messages)
 
-export const selectMessagesByTeam = createSelector(
-    [selectAllMessages, (state, team_id) => team_id],
-    (messages, team_id) => messages.filter((message) => message.team_id === team_id)
-)
-
+export const { messageReceived, addMultipleMessages, getMessages, addMessage } = messagesSlice.actions
 export default messagesSlice.reducer
