@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 
 function App() {
   const dispatch = useDispatch()
+  const [memberImage, setMemberImage] = useState("")
 
   useEffect(() => {
     // auto-login

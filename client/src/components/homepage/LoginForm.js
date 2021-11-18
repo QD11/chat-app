@@ -11,8 +11,9 @@ function LoginForm() {
 
     const dispatch = useDispatch()
     const history = useHistory()
-  
+    console.log(errors)
     function handleSubmit(e) {
+      
       e.preventDefault();
       setIsLoading(true);
       fetch("/login", {
@@ -68,7 +69,7 @@ function LoginForm() {
           {/* {errors.map((err) => (
             <Error key={err}>{err}</Error>
           ))} */}
-      
+          {console.log(errors.errors)}
       </form>
     );
   }
