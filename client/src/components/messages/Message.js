@@ -31,9 +31,39 @@ const Message = ({message}) => {
 const UserSpan = styled.span`
     display: flex;
     justify-content: flex-end;
+    margin: 0 0 5px;
+    padding: 0.5em 1em 0.65em;
+    border-radius: 4px;
+    max-width: 65%;
+    clear: both;
+    position: relative;
+    float: right;
+    background-color: #1289fe;
+    color: white;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em 0.5em;
+    border-bottom-left-radius: 1em;
+
 `
 
 const OtherSpan = styled.span`
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 5px;
+    padding: 0.5em 1em 0.65em;
+    border-radius: 4px;   
+    max-width: 65%;
+    clear: both;
+    position: relative;
+    float: left;
+    background-color: #e5e5ea;
+    color: black;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-left-radius: 1em 0.5em;
+    border-bottom-right-radius: 1em;
+  
 
 `
 
