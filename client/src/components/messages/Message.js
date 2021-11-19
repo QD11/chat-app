@@ -22,13 +22,15 @@ const Message = ({message}) => {
             {message.user.id === userInfo.id ? 
             <UserSpan>{content} by me at {renderDate}</UserSpan>
             : 
-            <OtherSpan>{content} by {name} at {renderDate} <Avatar name={name} round={true} size="25" /> </OtherSpan>}<Avatar name={name} round={true} size="25" className="chat-avatar"/>
+            <OtherSpan>{content} by {name} at {renderDate} <Avatar name={name} round={true} size="25" /> </OtherSpan>}
+            
+            <Avatar name={name} round={true} size="25" className="chat-avatar"/>
         {/* <span>{content} by {name} at {renderDate} </span> */}
         </div>
     )
 }
 
-const UserSpan = styled.span`
+const UserSpan = styled.p`
     display: flex;
     justify-content: flex-end;
     margin: 0 0 5px;
@@ -40,14 +42,14 @@ const UserSpan = styled.span`
     float: right;
     background-color: #1289fe;
     color: white;
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
-    border-bottom-right-radius: 1em 0.5em;
-    border-bottom-left-radius: 1em;
+    border-top-left-radius: 1.1em;
+    border-top-right-radius: 1.1em;
+    border-bottom-right-radius: 1em 0.2em;
+    border-bottom-left-radius: 1.1em;
 
 `
 
-const OtherSpan = styled.span`
+const OtherSpan = styled.p`
     display: flex;
     justify-content: flex-end;
     margin: 0 0 5px;
@@ -59,10 +61,10 @@ const OtherSpan = styled.span`
     float: left;
     background-color: #e5e5ea;
     color: black;
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
-    border-bottom-left-radius: 1em 0.5em;
-    border-bottom-right-radius: 1em;
+    border-top-left-radius: 1.1em;
+    border-top-right-radius: 1.1em;
+    border-bottom-left-radius: 1em 0.2em;
+    border-bottom-right-radius: 1.1em;
   
 
 `

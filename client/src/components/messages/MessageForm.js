@@ -33,8 +33,12 @@ const MessageForm = ({sendMessage, team_id}) => {
 
 const ChatForm = styled.form`
     .ChatInput {
+        position: relative
         width: 50%;
         max-width: none;
+        bottom: 50px;
+        
+        
         
     }
 
