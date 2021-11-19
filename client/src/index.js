@@ -5,17 +5,13 @@ import App from './App';
 import { Provider } from 'react-redux';
 import actionCable from 'actioncable'
 import * as serviceWorker from './serviceWorker';
-import allReducers from './states/allReducers';
+import store from './states/allReducers';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(
-  allReducers, 
-  composeWithDevTools(applyMiddleware(thunk)),
-  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+// const store = createStore({reducer})
 
 const CableApp = {}
 CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable') // change to whatever port your server uses

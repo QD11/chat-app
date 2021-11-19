@@ -44,22 +44,6 @@ const MessageTeam = () => {
                 }
             }
             dispatch(setMembership(newData))
-        //     const newMembership = {...data}
-        //     delete newMembership['team']
-        //     const numIndex = team.memberships.findIndex(membership => membership.id === newMembership.id)
-        //     const newMemberships = {...team.memberships}
-        //     newMemberships[numIndex] = {...newMembership}
-        //     const newTeam = {...team}
-        //     newTeam.memberships = newMemberships
-        //     // const newTeamsInfo = [...teamsInfo].filter(team => {
-        //     //     if (team.id === newTeam.id) {
-        //     //         return newTeam
-        //     //     }else {
-        //     //         return team
-        //     //     }
-        //     // })
-        //     dispatch(updateTeam(newTeam))
-        //     //console.log(newTeam)
         })
     }
 
@@ -75,7 +59,7 @@ const MessageTeam = () => {
         //unsubscribe
         return () => {
             channel.unsubscribe()
-            //updateLastRead()
+            updateLastRead()
         }
     }, [userInfo, team_id])
 
@@ -86,7 +70,6 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
-                console.log(data)
                 const userMatch = team.users.find(user => user.id === data.user_id)
                 const newData = {
                     id: data.id,
@@ -100,7 +83,6 @@ const MessageTeam = () => {
                     user: {...userMatch}
                 }
                 dispatch(addMessage(newData))
-                //updateLastRead()
             }})
     }, [userInfo, dispatch, team_id])
 

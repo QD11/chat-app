@@ -11,7 +11,7 @@ function LoginForm() {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    console.log(errors)
+    // console.log(errors)
     function handleSubmit(e) {
       
       e.preventDefault();

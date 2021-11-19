@@ -4,6 +4,16 @@ import {
     createSelector,
     createAsyncThunk } from '@reduxjs/toolkit'
 
+    export const fetchMemberships = createAsyncThunk(
+        'memberships/fetchMemberships',
+        async (API, {dispatch}) => {
+            return (
+            fetch(API)
+            .then((resp) => resp.json())
+            .then(data => dispatch(getMemberships(data))))
+        }
+    )
+
 const membershipsAdapter = createEntityAdapter()
 const initialState = membershipsAdapter.getInitialState()
 
