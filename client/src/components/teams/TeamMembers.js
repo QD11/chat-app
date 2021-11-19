@@ -8,7 +8,6 @@ import TeamMember from './TeamMember';
 function TeamMembers({image, setImage}) {
     const {team_id} = useParams()
     const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
-    console.log(team)
 
     return (
         <div className="team-members">

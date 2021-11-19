@@ -14,19 +14,18 @@ const item2 = {
     name: "Wash the car"
 }
 
-const DragAndDrop = ({users}) => {
-    console.log(users)
-    const [text, setText] = useState("")
-    const [state, setState] = useState({
-        "todo": {
-        title: "Todo",
-        items: users
-        },
-        "in-progress": {
-        title: "In Progress",
-        items: []
-        },
-    })
+const DragAndDrop = ({state, setState}) => {
+    // const [text, setText] = useState("")
+    // // const [state, setState] = useState({
+    // //     "todo": {
+    // //     title: "Todo",
+    // //     items: users
+    // //     },
+    // //     "in-progress": {
+    // //     title: "In Progress",
+    // //     items: []
+    // //     },
+    // })
 
     const handleDragEnd = ({destination, source}) => {
         if (!destination) {
@@ -53,32 +52,9 @@ const DragAndDrop = ({users}) => {
         })
     }
 
-    const addItem = () => {
-        setState(prev => {
-        return {
-            ...prev,
-            todo: {
-            title: "Todo",
-            items: [
-                {
-                id: v4(),
-                name: text
-                },
-                ...prev.todo.items
-            ]
-            }
-        }
-        })
-
-        setText("")
-    }
 
     return (
         <div className="App">
-        <div>
-            <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
-            <button onClick={addItem}>Add</button>
-        </div>
         <DragDropContext onDragEnd={handleDragEnd}>
             {_.map(state, (data, key) => {
             return(
@@ -96,7 +72,6 @@ const DragAndDrop = ({users}) => {
                             return(
                             <Draggable key={el.id} index={index} draggableId={el.id}>
                                 {(provided, snapshot) => {
-                                console.log(snapshot)
                                 return(
                                     <div
                                     className={`item ${snapshot.isDragging && "dragging"}`}
