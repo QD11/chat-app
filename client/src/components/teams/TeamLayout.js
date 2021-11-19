@@ -8,6 +8,7 @@ import { getMessages, fetchMessages, messagesSelectors} from '../../states/messa
 import styled from 'styled-components'
 import { ActionCableContext } from '../../index'
 import { getMemberships, fetchMemberships, membershipsSelectors } from '../../states/membershipsSlice'
+import {BiMessageAdd} from 'react-icons/bi'
 
 const TeamLayout = ({path, image, setImage}) => {
     const cable = useContext(ActionCableContext)
@@ -40,9 +41,9 @@ const TeamLayout = ({path, image, setImage}) => {
         return (
             <SplitDiv>
                 <LeftSideDiv>
-                    <LinkNewMessage to={`${path}/create`}>
-                        <span>New Message</span>
-                    </LinkNewMessage>
+                    {/* <LinkNewMessage to={`${path}/create`}>
+                        <NewMessage />
+                    </LinkNewMessage> */}
                     <TeamList />
                 </LeftSideDiv>
                 <Switch>
@@ -57,6 +58,12 @@ const TeamLayout = ({path, image, setImage}) => {
     }
 }
 
+const NewMessage = styled(BiMessageAdd)`
+    font-size: 75px;
+    margin-left: 15px;
+    cursor: pointer;
+`
+
 const SplitDiv = styled.div.attrs(props => ({
     className: 'SplitDiv'
 }))`
@@ -70,7 +77,8 @@ const LeftSideDiv = styled.div.attrs(props => ({
     flex-direction: column;
     width: 15%;
     align-items: center;
-    
+    overflow-y: hidden;
+    height: 92vh;
 `
 
 const MidSideDiv = styled.div.attrs(props => ({

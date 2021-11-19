@@ -30,8 +30,8 @@ function App() {
         <Route path='/teams' >
           {user  ? 
             <>
-              <TeamLayout  path='/teams' image={image} setImage={setImage}/>
               <Navbar image={image} setImage={setImage}/> 
+              <TeamLayout  path='/teams' image={image} setImage={setImage}/>
             </>
             : null}
         </Route>

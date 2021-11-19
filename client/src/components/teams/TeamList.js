@@ -21,7 +21,10 @@ const TeamList = () => {
         const newLastMessages = lastMessages.sort(function(a, b) {
             return b.id - a.id
         });
-        const teamInOrder = newLastMessages.map(message => message.team)
+
+        const teamInOrder = newLastMessages?.map(message => message?.team)
+
+        console.log(teamInOrder)
         
         const newTeamsInfo = []
         teamInOrder.forEach(team => {
