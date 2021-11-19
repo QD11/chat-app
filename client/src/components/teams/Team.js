@@ -1,17 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
+
+import { Switch, Route, Link, useParams } from 'react-router-dom';
 import {messagesSelectors} from '../../states/messagesSlice'
 import { useSelector } from 'react-redux'
+import {membershipsSelectors} from '../../states/membershipsSlice'
 
-const Team = ({team}) => {
-    const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team_id === team.id)
+const Team = ({team, membership}) => {
+    const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === team.id)
     if (!messages) {
         return <h1>Loading..</h1>
     } 
-    
+    const lastRead = membership.last_read_at
+    const unreadMessages = messages.filter(message => message.created_at > lastRead)
+    const currentID = parseInt(window.location.href.split("/").at(-1))
+
     return (
         <LinkTeam to={`/teams/${team.id}`}>
+            {unreadMessages.length > 0 && currentID !== team.id ? <span>{unreadMessages.length}</span>: null}
             <span>{team.name}</span>
             <span>{team.users?.map(user => user.name)}</span>
             {messages.length ? 

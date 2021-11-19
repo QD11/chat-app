@@ -68,7 +68,7 @@ function LoginForm() {
           {/* {errors.map((err) => (
             <Error key={err}>{err}</Error>
           ))} */}
-          {console.log(errors.errors)}
+          {/* {console.log(errors.errors)} */}
       </form>
     );
   }

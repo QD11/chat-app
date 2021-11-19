@@ -1,14 +1,18 @@
-import {combineReducers} from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import messageSliceReducer from './messagesSlice'
 import teamsSliceReducer from './teamsSlice'
 import messagesPerTeamSliceReducer from './messagesPerTeamSlice'
 import usersSliceReducer from './usersSlice'
+import membershipsSliceReducer from './membershipsSlice'
 
-const allReducers = combineReducers({
-    messages : messageSliceReducer,
-    teamsInfo : teamsSliceReducer,
-    usersInfo : usersSliceReducer,
-    //messagesPerTeam: messagesPerTeamSliceReducer
+
+const store = configureStore({
+    reducer: {
+        messages : messageSliceReducer,
+        teamsInfo : teamsSliceReducer,
+        usersInfo : usersSliceReducer,
+        membershipsInfo : membershipsSliceReducer,
+    }
 })
 
-export default allReducers;
+export default store;

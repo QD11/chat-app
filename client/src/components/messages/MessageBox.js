@@ -1,11 +1,14 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useParams} from 'react-router-dom';
 import MessageTeam from './MessageTeam'
 import CreateTeam from '../teams/CreateTeam'
 import styled from 'styled-components'
 import TeamMembers from '../teams/TeamMembers'
 
 const MessageBox = ({path, image, setImage}) => {
+
+    const abc = useParams()
+
     return (
         <>
             <Switch>
@@ -17,7 +20,7 @@ const MessageBox = ({path, image, setImage}) => {
                 </Route>
                 
                 //render teams
-                <Route path={`${path}/:team_id`}>
+                <Route path={`${path}/:team_id`} >
                     <MidSideDiv>
                         <MessageTeam />
                     </MidSideDiv>

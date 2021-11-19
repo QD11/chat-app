@@ -1,8 +1,23 @@
 import {
     createEntityAdapter,
-    createSlice} from '@reduxjs/toolkit'
+    createSlice,
+    createSelector,
+    createAsyncThunk} from '@reduxjs/toolkit'
 
-const messagesAdapter = createEntityAdapter()
+
+export const fetchMessages = createAsyncThunk(
+    'messages/fetchMessages',
+    async (API, {dispatch}) => {
+        return (
+        fetch(API)
+        .then((resp) => resp.json())
+        .then(data => dispatch(getMessages(data))))
+    }
+)
+
+const messagesAdapter = createEntityAdapter({
+    selectId: ({ id }) => id
+})
 
 const initialState = messagesAdapter.getInitialState()
 

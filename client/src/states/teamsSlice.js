@@ -1,9 +1,24 @@
 import {
     createEntityAdapter,
-    createSlice} from '@reduxjs/toolkit'
+    createSlice,
+    createSelector,
+    createAsyncThunk } from '@reduxjs/toolkit'
+    
+export const fetchTeams = createAsyncThunk(
+    'teams/fetchTeams',
+    async (API, {dispatch}) => {
+        return (
+        fetch(API)
+        .then((resp) => resp.json())
+        .then(data => dispatch(getTeams(data))))
+    }
+)
 
-const teamsAdapter = createEntityAdapter()
-const initialState = teamsAdapter.getInitialState()
+
+const teamsAdapter = createEntityAdapter({
+    selectId: ({ id }) => id
+})
+const initialState = teamsAdapter.getInitialState({})
 
 const teamsSlice = createSlice({
     name: 'teams',
@@ -11,18 +26,26 @@ const teamsSlice = createSlice({
     reducers: {
         getTeams: teamsAdapter.addMany,
         addTeam: teamsAdapter.addOne,
-        updateTeam(state, action) {
-            const data = action.payload
-            teamsAdapter.removeOne(state, data[0])
-            teamsAdapter.addOne(state, data[1])
-        },
+        updateTeam: teamsAdapter.setOne,
         getData(state, action) {
             return [...action.payload]
         },
     },
+    // extraReducers: {
+    //     [fetchTeams.pending]: (state) => {
+    //         state.status = 'loading'
+    //     },
+    //     [fetchTeams.fulfilled]: (state, action) => {
+    //         state.status = 'success'
+    //         //state.entities = action.payload
+    //     },
+    //     [fetchTeams.rejected]: (state) => {
+    //         state.status = 'failed'
+    //     },
+    // }
 })
 
 export const teamsSelectors = teamsAdapter.getSelectors(state => state.teamsInfo)
 
-export const { getTeams, getData, updateLatestMessage, updateTeam, addTeam } = teamsSlice.actions
+export const { getTeams, getData, updateLatestMessage, updateTeam, addTeam} = teamsSlice.actions
 export default teamsSlice.reducer

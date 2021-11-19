@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, Component } from 'react'
 import { ActionCableContext } from '../../index'
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,6 +6,7 @@ import MessageList from './MessageList'
 import MessageForm from './MessageForm'
 import { teamsSelectors, updateTeam } from '../../states/teamsSlice'
 import { messagesSelectors, addMessage } from '../../states/messagesSlice'
+import { setMembership } from '../../states/membershipsSlice'
 
 
 const MessageTeam = () => {
@@ -15,9 +16,39 @@ const MessageTeam = () => {
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
-    const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
+    const teamsInfo = useSelector(teamsSelectors.selectAll)
+    const team = teamsInfo.find(team => team.id === parseInt(team_id))
+    const membership_id = team.memberships.find(membership => membership.user.id === userInfo.id).id
+
+    const updateLastRead = () => {
+        const currentDateTime = (new Date).toISOString()
+        const data = {
+            id: membership_id,
+            last_read_at: currentDateTime,
+        }
+        fetch(`http://localhost:3000/memberships/${membership_id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then(r => r.json())
+        .then(data => {
+            const newData = {
+                id: data.id,
+                last_read_at: data.last_read_at,
+                user: userInfo,
+                team: {
+                    id: team.id,
+                    description: team.description,
+                    name: team.name
+                }
+            }
+            dispatch(setMembership(newData))
+        })
+    }
 
     useEffect(() => {
+        updateLastRead()
         //create a subscription to MessagesChannel
         const channel = cable.subscriptions.create({
             channel: 'MessagesChannel',
@@ -28,6 +59,7 @@ const MessageTeam = () => {
         //unsubscribe
         return () => {
             channel.unsubscribe()
+            updateLastRead()
         }
     }, [userInfo, team_id])
 
@@ -38,7 +70,6 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
-                console.log(data)
                 const userMatch = team.users.find(user => user.id === data.user_id)
                 const newData = {
                     id: data.id,
@@ -61,7 +92,6 @@ const MessageTeam = () => {
 
     const sendMessage = (content) => {
         const data = { team_id, user_id, content }
-        console.log('send', data)
         channel.send(data)
     }
 

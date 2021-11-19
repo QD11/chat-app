@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import { useDispatch } from 'react-redux'
-// import { getUser } from './states/usersSlice'
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from './states/usersSlice'
 import TeamLayout from './components/teams/TeamLayout'
 import SignupForm from './components/homepage/SignupForm'
 import Login from './pages/Login'
@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 function App() {
   // const dispatch = useDispatch()
   const [image, setImage] = useState("")
+  const user = useSelector(state => state.usersInfo)
 
   // useEffect(() => {
   //   // auto-login
@@ -27,8 +28,12 @@ function App() {
       
       <Switch>
         <Route path='/teams' >
-          <TeamLayout  path='/teams' image={image} setImage={setImage}/>
-          <Navbar image={image} setImage={setImage}/>
+          {user  ? 
+            <>
+              <TeamLayout  path='/teams' image={image} setImage={setImage}/>
+              <Navbar image={image} setImage={setImage}/> 
+            </>
+            : null}
         </Route>
         <Route path='/signup'>
           <SignupForm />
