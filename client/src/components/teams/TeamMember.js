@@ -3,7 +3,7 @@ import Avatar from 'react-avatar';
 
 function TeamMember({member, image}) {
     return (
-        <div>
+        <div className="team-member">
             <li>{member.name}</li>
             <Avatar 
             name={member.name} 

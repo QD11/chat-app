@@ -58,12 +58,9 @@ header {
   background-color: rgb(200, 216, 236);
 }
 
-/* .navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-
-} */
+.team-member {
+  margin-left: 20%;
+}
 
 .message-team {
   position: fixed;
@@ -168,4 +165,10 @@ ul {
 .image {
   width: 100%;
 }
+
+.chat-avatar {
+  margin-left: 610px;
+  margin-top: -15px;
+}
+
 

@@ -36,7 +36,7 @@ const MessageBox = ({path, image, setImage}) => {
 const RightSideDiv = styled.div.attrs(props => ({
     className: 'RightSideDiv'
 }))`
-    width: 20%;
+    
 `
 
 const MidSideDiv = styled.div.attrs(props => ({

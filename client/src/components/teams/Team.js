@@ -5,6 +5,7 @@ import { Switch, Route, Link, useParams } from 'react-router-dom';
 import {messagesSelectors} from '../../states/messagesSlice'
 import { useSelector } from 'react-redux'
 import {membershipsSelectors} from '../../states/membershipsSlice'
+import Avatar from 'react-avatar';
 
 const Team = ({team, membership}) => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === team.id)

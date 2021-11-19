@@ -64,6 +64,7 @@ const NavDiv = styled.div.attrs(props => ({
     align-items: center;
     justify-content: space-between;
     height: 8vh;
+    margin-bottom: 5em;
 `
 
 const Logout = styled(MdLogout)`

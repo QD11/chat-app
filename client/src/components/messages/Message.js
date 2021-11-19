@@ -2,6 +2,7 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 import { parseISO } from 'date-fns'
+import Avatar from 'react-avatar';
 
 const Message = ({message}) => {
     const userInfo = useSelector(state => state.usersInfo)
@@ -21,8 +22,8 @@ const Message = ({message}) => {
             {message.user.id === userInfo.id ? 
             <UserSpan>{content} by me at {renderDate}</UserSpan>
             : 
-            <OtherSpan>{content} by {name} at {renderDate}</OtherSpan>}
-            {/* <span>{content} by {name} at {renderDate} </span> */}
+            <OtherSpan>{content} by {name} at {renderDate} <Avatar name={name} round={true} size="25" /> </OtherSpan>}<Avatar name={name} round={true} size="25" className="chat-avatar"/>
+        {/* <span>{content} by {name} at {renderDate} </span> */}
         </div>
     )
 }
