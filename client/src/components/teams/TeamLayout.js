@@ -7,6 +7,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { getMessages } from '../../states/messagesSlice';
 import styled from 'styled-components'
 import { ActionCableContext } from '../../index'
+import { getMemberships } from '../../states/membershipsSlice'
 
 const TeamLayout = ({path, image, setImage}) => {
     const cable = useContext(ActionCableContext)
@@ -21,6 +22,10 @@ const TeamLayout = ({path, image, setImage}) => {
         fetch(`http://localhost:3000/${userInfo.id}/teams/messages`)
         .then(resp => resp.json())
         .then((data) => dispatch(getMessages(data)))
+
+        fetch(`http://localhost:3000/${userInfo.id}/memberships`)
+        .then(resp => resp.json())
+        .then((data) => dispatch(getMemberships(data)))
     }, [userInfo])
 
     useEffect(() => {

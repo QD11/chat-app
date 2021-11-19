@@ -13,11 +13,11 @@ const teamsSlice = createSlice({
     reducers: {
         getTeams: teamsAdapter.addMany,
         addTeam: teamsAdapter.addOne,
-        updateTeam(state, action) {
-            const data = action.payload
-            teamsAdapter.removeOne(state, data[0])
-            teamsAdapter.addOne(state, data[1])
-        },
+        updateTeam: teamsAdapter.setOne,
+        // updateTeam(state, action) {
+        //     teamsAdapter.removeAll(state)
+        //     teamsAdapter.addOne(state, action.payload)
+        // },
         getData(state, action) {
             return [...action.payload]
         },
@@ -26,5 +26,5 @@ const teamsSlice = createSlice({
 
 export const teamsSelectors = teamsAdapter.getSelectors(state => state.teamsInfo)
 
-export const { getTeams, getData, updateLatestMessage, updateTeam, addTeam } = teamsSlice.actions
+export const { getTeams, getData, updateLatestMessage, updateTeam, addTeam} = teamsSlice.actions
 export default teamsSlice.reducer

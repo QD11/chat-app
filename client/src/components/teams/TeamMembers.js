@@ -13,7 +13,7 @@ function TeamMembers({image, setImage}) {
         <div className="team-members">
             <h3>Chat Members</h3>
             <ul>
-                {team.users.map(member => <TeamMember member={member} image={image} setImage={setImage}/>)}
+                {team.users.map(member => <TeamMember member={member} image={image} setImage={setImage} key={member.id}/>)}
             </ul>
         </div>
     )
