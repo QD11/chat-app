@@ -4,10 +4,10 @@ import MessageBox from '../messages/MessageBox'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTeams, addTeam, fetchTeams, teamsSelectors } from '../../states/teamsSlice'
 import { Switch, Route, Link } from 'react-router-dom';
-import { getMessages, fetchMessages, messagesSelectors} from '../../states/messagesSlice';
+import { getMessages, fetchMessages, messagesSelectors, addMessage} from '../../states/messagesSlice';
 import styled from 'styled-components'
 import { ActionCableContext } from '../../index'
-import { getMemberships, fetchMemberships, membershipsSelectors } from '../../states/membershipsSlice'
+import { getMemberships, fetchMemberships, membershipsSelectors, addMembership } from '../../states/membershipsSlice'
 import {BiMessageAdd} from 'react-icons/bi'
 
 const TeamLayout = ({path, image, setImage}) => {
@@ -32,9 +32,26 @@ const TeamLayout = ({path, image, setImage}) => {
                     dispatch(addTeam(data))
                 }}
         })
+
+        cable.subscriptions.create({
+            channel: 'NewMessageChannel'
+        },
+        {
+            received: (data) => {
+                dispatch(addMessage(data))
+            }
+        })
+
+        cable.subscriptions.create({
+            channel: 'NewMembershipChannel'
+        },
+        {
+            received: (data) => {
+                dispatch(addMembership(data))
+            }
+        })
     }, [userInfo, dispatch])
 
-    console.log(teams)
 
     if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0) {
         
@@ -77,7 +94,7 @@ const LeftSideDiv = styled.div.attrs(props => ({
     flex-direction: column;
     width: 15%;
     align-items: center;
-    overflow-y: hidden;
+    overflow-y: scroll;
     height: 92vh;
 `
 

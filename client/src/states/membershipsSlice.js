@@ -23,10 +23,11 @@ const membershipsSlice = createSlice({
     reducers: {
         getMemberships: membershipsAdapter.addMany,
         setMembership: membershipsAdapter.setOne,
+        addMembership: membershipsAdapter.addOne,
     },
 })
 
 export const membershipsSelectors = membershipsAdapter.getSelectors(state => state.membershipsInfo)
 
-export const {getMemberships, setMembership} = membershipsSlice.actions
+export const {getMemberships, setMembership, addMembership} = membershipsSlice.actions
 export default membershipsSlice.reducer

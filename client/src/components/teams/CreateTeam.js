@@ -20,6 +20,7 @@ const CreateTeam = () => {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
+        content: '',
         // users: [userInfo]
     })
 
@@ -81,25 +82,30 @@ const CreateTeam = () => {
         const data = {
             name: formData.name,
             description: formData.description,
-            users: newUsers
+            users: newUsers,
+            content: formData.content,
+            user_id: userInfo.id,
         }
         channel.send(data)
         //reset the states
         setFormData({
             name: '',
-            description: ''
+            description: '',
+            content: '',
         })
         setMembers([])
         setSearchFilter('')
         setUsers(initialUsers)
     }
 
+    console.log(formData)
+
     const filteredFriends = users.filter(user => user.name.toLowerCase().includes(searchFilter.toLowerCase()))
 
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
-                <button type="submit" disabled={members.length === 0 || !formData.name || !formData.description ? true: false}>CREATE</button>
+                <button type="submit" disabled={members.length === 0 || !formData.name || !formData.description || !formData.content ? true: false}>CREATE</button>
                 <label>Chat Name</label>
                 <input type="text" name="name" onChange={handleFormChange} value={formData.name}></input>
                 {/*  */}
@@ -112,6 +118,8 @@ const CreateTeam = () => {
                 <br/>
                 <label>Friends!</label>
                 {members.map(member => <div key={member.id} onClick={() => addToUsers(member)}>{member.name}</div>)}
+                <label>Initial Message</label>
+                <input type="text" name="content" onChange={handleFormChange} value={formData.content}></input>
             </form>
         </div>
     )

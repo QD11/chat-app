@@ -10,7 +10,7 @@ const TeamList = () => {
     const messages = useSelector(messagesSelectors.selectAll)
     const memberships = useSelector(membershipsSelectors.selectAll)
 
-    if (messages.length > 0) {
+    if (messages.length > 0 || teamsInfo.every(team => team) || memberships.every(team=>team)) {
 
         const lastMessages = []
         teamsInfo.forEach(team => {
@@ -23,18 +23,18 @@ const TeamList = () => {
         });
 
         const teamInOrder = newLastMessages?.map(message => message?.team)
-
-        console.log(teamInOrder)
         
         const newTeamsInfo = []
         teamInOrder.forEach(team => {
             newTeamsInfo.push(teamsInfo.find(renderTeam => team.id === renderTeam.id))
         })
 
+        console.log('t', newTeamsInfo)
+        console.log('m', memberships)
 
         return (
             <div>
-                {teamsInfo.length !== 0 || teamsInfo ? newTeamsInfo.map(team => <Team key={team.id} team={team} membership={memberships.find(membership => membership.team.id === team.id)}/>) : null}
+                {(teamsInfo.length !== 0 || teamsInfo)  ? newTeamsInfo.map(team => <Team key={team.id} team={team} membership={memberships.find(membership => membership.team.id === team.id)}/>) : null}
             </div>
         )}
     else {
