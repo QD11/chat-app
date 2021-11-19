@@ -16,12 +16,13 @@ const TeamLayout = ({path, image, setImage}) => {
     useEffect(()=> {
         fetch(`http://localhost:3000/${userInfo.id}/teams`)
         .then(resp => resp.json())
-        .then((data) => dispatch(getTeams(data)))
+        .then((data) => 
+            dispatch(getTeams(data)))
 
         fetch(`http://localhost:3000/${userInfo.id}/teams/messages`)
         .then(resp => resp.json())
         .then((data) => dispatch(getMessages(data)))
-    }, [userInfo])
+    }, [])
 
     useEffect(() => {
         cable.subscriptions.create({

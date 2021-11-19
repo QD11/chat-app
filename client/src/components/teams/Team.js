@@ -5,13 +5,18 @@ import {messagesSelectors} from '../../states/messagesSlice'
 import { useSelector } from 'react-redux'
 
 const Team = ({team}) => {
-    const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === team.id)
-
+    const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team_id === team.id)
+    if (!messages) {
+        return <h1>Loading..</h1>
+    } 
+    
     return (
         <LinkTeam to={`/teams/${team.id}`}>
             <span>{team.name}</span>
-            <span>{team.users.map(user => user.name)}</span>
-            {messages.length? <span>{messages.at(-1).content.length < 8 ? messages.at(-1).content : messages.at(-1).content.substring(0,8) + "..."}</span> : null}
+            <span>{team.users?.map(user => user.name)}</span>
+            {messages.length ? 
+            <span>{messages.at(-1).content.length < 8 ? messages.at(-1).content : messages.at(-1).content.substring(0,8) + "..."}</span>
+             : null}
         </LinkTeam>
     )
 }

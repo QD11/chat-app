@@ -21,7 +21,7 @@ function Navbar({image, setImage}) {
 
     return (
         <header className="navbar">
-            <p>{userInfo.name}</p>
+            <h3>{userInfo.name}</h3>
             <Avatar
             onClick={() => setModalOpen(true)}
             name={userInfo.name} 
@@ -30,7 +30,7 @@ function Navbar({image, setImage}) {
             src={image}
             />
             {modalOpen && <Modal image={image} setImage={setImage} setOpenModal={setModalOpen} />}
-            <button onClick={onLogOut}>Log Out</button>
+            <button onClick={onLogOut}>Logout</button>
         </header>
     )
 }

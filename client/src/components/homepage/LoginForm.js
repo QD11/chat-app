@@ -11,7 +11,7 @@ function LoginForm() {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    console.log(errors)
+    // console.log(errors)
     function handleSubmit(e) {
       
       e.preventDefault();
@@ -42,7 +42,7 @@ function LoginForm() {
     }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         
           <label htmlFor="email">Email</label>
           <input
@@ -51,8 +51,7 @@ function LoginForm() {
             autoComplete="off"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          /><br/>
-      
+          />
           <label htmlFor="password">Password</label>
           <input
             type="password"
