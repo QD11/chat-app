@@ -7,6 +7,7 @@ import Modal from './Modal'
 import styled from 'styled-components'
 import { MdLogout } from 'react-icons/md'
 import {BiMessageAdd} from 'react-icons/bi'
+import AvatarGroup from 'react-avatar-group'
 // import { motion } from "framer-motion"
 
 function Navbar({image, setImage}) {
@@ -30,13 +31,7 @@ function Navbar({image, setImage}) {
                 <NewMessage onClick={() => history.push('/teams/create')}/>
             </div>
             <RightDiv>
-                <Avatar
-                onClick={() => setModalOpen(true)}
-                name={userInfo.name} 
-                size="50" 
-                round={true}
-                src={image}
-                />
+                <AvatarGroup avatars={[userInfo.name]} initialCharacters={1} max={1} size={50} shadow={4}/>
                 {modalOpen && <Modal image={image} setImage={setImage} setOpenModal={setModalOpen} />}
                 {/* <button onClick={onLogOut}><MdLogout size="30px"/></button> */}
                 <Logout onClick={onLogOut}/>
@@ -64,13 +59,13 @@ const NavDiv = styled.div.attrs(props => ({
     align-items: center;
     justify-content: space-between;
     height: 8vh;
-    margin-bottom: 5em;
 `
 
 const Logout = styled(MdLogout)`
     font-size: 35px;
     margin-left: 15px;
     cursor: pointer;
+    margin-right: 20px;
 `
 
 export default Navbar

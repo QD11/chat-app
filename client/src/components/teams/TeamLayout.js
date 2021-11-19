@@ -58,9 +58,6 @@ const TeamLayout = ({path, image, setImage}) => {
         return (
             <SplitDiv>
                 <LeftSideDiv>
-                    {/* <LinkNewMessage to={`${path}/create`}>
-                        <NewMessage />
-                    </LinkNewMessage> */}
                     <TeamList />
                 </LeftSideDiv>
                 <Switch>
@@ -96,6 +93,7 @@ const LeftSideDiv = styled.div.attrs(props => ({
     align-items: center;
     overflow-y: scroll;
     height: 92vh;
+    background-color: #dfe8f0;
 `
 
 const MidSideDiv = styled.div.attrs(props => ({

@@ -7,6 +7,7 @@ import MessageForm from './MessageForm'
 import { teamsSelectors, updateTeam } from '../../states/teamsSlice'
 import { messagesSelectors, addMessage } from '../../states/messagesSlice'
 import { setMembership } from '../../states/membershipsSlice'
+import styled from 'styled-components'
 
 
 const MessageTeam = () => {
@@ -96,11 +97,20 @@ const MessageTeam = () => {
     }
 
     return (
-        <div>
-            {messages.length ? <MessageList messages={messages} /> : null}
+        <>
+            <MessagesDiv>
+                {messages.length ? <MessageList messages={messages} /> : null}
+            </MessagesDiv>
             <MessageForm sendMessage={sendMessage} team_id={team_id}/>
-        </div>
+        </>
     )
 }
+
+const MessagesDiv = styled.div`
+    overflow-y: scroll;
+    min-height: 91%;
+    overflow-x: hidden;
+
+`
 
 export default MessageTeam

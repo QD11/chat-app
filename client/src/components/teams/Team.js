@@ -6,6 +6,7 @@ import {messagesSelectors} from '../../states/messagesSlice'
 import { useSelector } from 'react-redux'
 import {membershipsSelectors} from '../../states/membershipsSlice'
 import Avatar from 'react-avatar';
+import AvatarGroup from 'react-avatar-group'
 
 const Team = ({team, membership}) => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === team.id)
@@ -28,7 +29,14 @@ const Team = ({team, membership}) => {
     return (
         <LinkTeam to={`/teams/${team.id}`}>
             <FirstDiv>
-                pic
+                <AvatarGroup
+                    avatars={namesToRender}
+                    initialCharacters={1}
+                    max={1}
+                    size={30}
+                    //displayAllOnHover
+                    shadow={2}
+                    />
             </FirstDiv>
             <SecondDiv>
                 <span>{names}</span>
@@ -36,18 +44,24 @@ const Team = ({team, membership}) => {
                 <span>{messages.at(-1).content.length < 8 ? messages.at(-1).content : messages.at(-1).content.substring(0,8) + "..."}</span>
                 : null}
             </SecondDiv>
-            <ThirdDiv>
-                {unreadMessages.length > 0 && currentID !== team.id ? <span>{unreadMessages.length}</span>: <span>#</span>}
-            </ThirdDiv>
+                {unreadMessages.length > 0 && currentID !== team.id ? <ThirdDiv><UnreadSpan>{unreadMessages.length}</UnreadSpan></ThirdDiv>: null}
             {/* <span>{team.name}</span> */}
         </LinkTeam>
     )
 }
 
+const UnreadSpan = styled.div`
+    // background-color: red;
+    // border-radius: 50%;
+    // width: 10%;
+    // padding: 4px;
+    // text-align: center;
+`
+
 const FirstDiv = styled.div.attrs(props => ({
     className: 'firstDiv'
 }))`
-    margin-left: 1vw;
+    margin-left: 0.3vw;
     margin-right: 1vw;
 `
 
@@ -63,7 +77,11 @@ const SecondDiv = styled.div.attrs(props => ({
 const ThirdDiv = styled.div.attrs(props => ({
     className: 'ThirdDiv'
 }))`
-
+    background-color: #d6a2a2;
+    border-radius: 50%;
+    width: 10%;
+    padding: 4px;
+    text-align: center;
 `
 
 const LinkTeam = styled(Link)`
@@ -73,7 +91,8 @@ const LinkTeam = styled(Link)`
     align-items: center;
     height: 8vh;
     width: 12vw;
-    //box-shadow: 1px 1px 5px 3px rgb(132 133 132 / 40%);
+    box-shadow: 0px 1px 2px 3px rgb(132 133 132 / 40%);
+    //box-shadow: 0 0px 0px rgb(0 0 0 / 15%);
     background-color: white;
     margin-bottom: 20px;
     border-radius: 10px;

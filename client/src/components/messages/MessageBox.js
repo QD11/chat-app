@@ -36,14 +36,24 @@ const MessageBox = ({path, image, setImage}) => {
 const RightSideDiv = styled.div.attrs(props => ({
     className: 'RightSideDiv'
 }))`
-    
+    background-color: #dfe8f0;
+    display: flex;
+    justify-content: center;
+    width: 25%;
+    overflow: scroll;
+    ::-webkit-scrollbar {
+        width: 0;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+    }
 `
 
 const MidSideDiv = styled.div.attrs(props => ({
     className: 'MidSideDiv'
 }))`
-    width: 65%;
-    bottom: 10;
+    display: flex;
+    flex-direction: column;
+    height: 92vh;
+    width: 60%;
 `
 
 export default MessageBox

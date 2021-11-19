@@ -8,13 +8,12 @@ import TeamMember from './TeamMember';
 function TeamMembers({image, setImage}) {
     const {team_id} = useParams()
     const team = useSelector(teamsSelectors.selectAll).find(team => team.id === parseInt(team_id))
+    console.log(team)
 
     return (
         <div className="team-members">
-            <h3>Chat Members</h3>
-            <ul>
-                {team.users.map(member => <TeamMember member={member} image={image} setImage={setImage} key={member.id}/>)}
-            </ul>
+            <h2>{team.name}</h2>
+            {team.users.map(member => <TeamMember member={member} image={image} setImage={setImage} key={member.id}/>)}
         </div>
     )
 }
