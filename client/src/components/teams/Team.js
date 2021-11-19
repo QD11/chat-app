@@ -10,9 +10,10 @@ import Avatar from 'react-avatar';
 const Team = ({team, membership}) => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === team.id)
     const userInfo = useSelector(state => state.usersInfo)
-    if (!messages) {
+    if (!messages || !membership) {
         return <h1>Loading..</h1>
     } 
+    console.log(team.id, membership)
     const lastRead = membership.last_read_at
     const unreadMessages = messages.filter(message => message.created_at > lastRead)
     const currentID = parseInt(window.location.href.split("/").at(-1))
@@ -23,7 +24,6 @@ const Team = ({team, membership}) => {
     if (namesToRender.join(' ').length > 10) {
         names += '...'
     }
-    console.log(names)
 
     return (
         <LinkTeam to={`/teams/${team.id}`}>
