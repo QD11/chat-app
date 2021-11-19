@@ -14,7 +14,6 @@ const Team = ({team, membership}) => {
     if (!messages || !membership) {
         return <h1>Loading..</h1>
     } 
-    console.log(team.id, membership)
     const lastRead = membership.last_read_at
     const unreadMessages = messages.filter(message => message.created_at > lastRead)
     const currentID = parseInt(window.location.href.split("/").at(-1))

@@ -29,9 +29,6 @@ const TeamList = () => {
             newTeamsInfo.push(teamsInfo.find(renderTeam => team.id === renderTeam.id))
         })
 
-        console.log('t', newTeamsInfo)
-        console.log('m', memberships)
-
         return (
             <div>
                 {(teamsInfo.length !== 0 || teamsInfo)  ? newTeamsInfo.map(team => <Team key={team.id} team={team} membership={memberships.find(membership => membership.team.id === team.id)}/>) : null}

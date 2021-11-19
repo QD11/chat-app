@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { ActionCableContext } from '../../index'
 import { useDispatch, useSelector } from 'react-redux'
+import DragAndDrop from './DragAndDrop'
 
 
 const sortByName = (list) => {
@@ -101,6 +102,13 @@ const CreateTeam = () => {
     console.log(formData)
 
     const filteredFriends = users.filter(user => user.name.toLowerCase().includes(searchFilter.toLowerCase()))
+    const dndUsers = [...users]
+    dndUsers.forEach(user => user.id = user.id.toString())
+
+    console.log(dndUsers)
+    if (!users.length) {
+        return <h1>Loading...</h1>
+    }
 
     return (
         <div>
@@ -121,6 +129,7 @@ const CreateTeam = () => {
                 <label>Initial Message</label>
                 <input type="text" name="content" onChange={handleFormChange} value={formData.content}></input>
             </form>
+            <DragAndDrop users={dndUsers}/>
         </div>
     )
 }
