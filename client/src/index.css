@@ -172,3 +172,8 @@ ul {
 }
 
 
+.scrollbot {
+  overflow-y: scroll;
+  min-height: 91%;
+  overflow-x: hidden;
+}

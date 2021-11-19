@@ -8,7 +8,7 @@ import { teamsSelectors, updateTeam } from '../../states/teamsSlice'
 import { messagesSelectors, addMessage } from '../../states/messagesSlice'
 import { setMembership } from '../../states/membershipsSlice'
 import styled from 'styled-components'
-
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 const MessageTeam = () => {
     const cable = useContext(ActionCableContext)
@@ -98,9 +98,9 @@ const MessageTeam = () => {
 
     return (
         <>
-            <MessagesDiv>
+            <ScrollToBottom className="scrollbot">
                 {messages.length ? <MessageList messages={messages} /> : null}
-            </MessagesDiv>
+            </ScrollToBottom>
             <MessageForm sendMessage={sendMessage} team_id={team_id}/>
         </>
     )
@@ -112,5 +112,6 @@ const MessagesDiv = styled.div`
     overflow-x: hidden;
 
 `
+
 
 export default MessageTeam

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTeams, addTeam, fetchTeams, teamsSelectors } from '../../states/teamsSlice'
 import { Switch, Route, Link } from 'react-router-dom';
 import { getMessages, fetchMessages, messagesSelectors, addMessage} from '../../states/messagesSlice';
+import {fetchAllUsers, allUsersSelectors} from '../../states/allusersSlice'
 import styled from 'styled-components'
 import { ActionCableContext } from '../../index'
 import { getMemberships, fetchMemberships, membershipsSelectors, addMembership } from '../../states/membershipsSlice'
@@ -17,11 +18,13 @@ const TeamLayout = ({path, image, setImage}) => {
     const teams = useSelector(teamsSelectors.selectAll)
     const messages = useSelector(messagesSelectors.selectAll)
     const memberships = useSelector(membershipsSelectors.selectAll)
+    const allUsersInfo = useSelector(allUsersSelectors.selectAll)
 
     useEffect(()=> {
         dispatch(fetchTeams(`http://localhost:3000/${userInfo.id}/teams`))
         dispatch(fetchMessages(`http://localhost:3000/${userInfo.id}/teams/messages`))
         dispatch(fetchMemberships(`http://localhost:3000/${userInfo.id}/memberships`))
+        dispatch(fetchAllUsers("http://localhost:3000/users"))
 
         cable.subscriptions.create({
             channel: 'NewTeamChannel'
@@ -53,7 +56,7 @@ const TeamLayout = ({path, image, setImage}) => {
     }, [userInfo, dispatch])
 
 
-    if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0) {
+    if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0 && allUsersInfo.length > 0) {
         
         return (
             <SplitDiv>

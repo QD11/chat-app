@@ -4,6 +4,7 @@ import teamsSliceReducer from './teamsSlice'
 import messagesPerTeamSliceReducer from './messagesPerTeamSlice'
 import usersSliceReducer from './usersSlice'
 import membershipsSliceReducer from './membershipsSlice'
+import allUsersSliceReducer from './allusersSlice'
 
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
         teamsInfo : teamsSliceReducer,
         usersInfo : usersSliceReducer,
         membershipsInfo : membershipsSliceReducer,
+        allUsersInfo : allUsersSliceReducer
     }
 })
 
