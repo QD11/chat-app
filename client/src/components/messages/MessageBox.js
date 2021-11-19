@@ -43,6 +43,7 @@ const MidSideDiv = styled.div.attrs(props => ({
     className: 'MidSideDiv'
 }))`
     width: 65%;
+    bottom: 10;
 `
 
 export default MessageBox

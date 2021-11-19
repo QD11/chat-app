@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=IBM+Plex+Serif&family=Montserrat&family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: cornsilk;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -16,11 +19,12 @@ input {
   border-radius: 6px;
   border: 1px solid transparent;
   border-color: #dbdbdb;
-  max-width: 30%;
+  max-width: 50%;
   width: 50%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
-  padding: 4px;
+  padding: 5px;
+  margin-bottom: 8px;
 }
 
 label {
@@ -41,9 +45,7 @@ button {
   padding: 8px 16px;
   text-decoration: none;
   text-emphasis: bold;
-  
-  
-  
+  font-family: 'Raleway', sans-serif;
 }
 
 form {
@@ -82,7 +84,14 @@ ul {
   position: fixed;
   top: 30%;
   left: 40%;
-  width: 75%;
+  height: 500px;
+  width: 600px;
+  align-items: center;
+  padding: 5px;
+}
+
+.login-form {
+  margin: auto;
 }
 
 .modalBackground {
@@ -159,3 +168,4 @@ ul {
 .image {
   width: 100%;
 }
+

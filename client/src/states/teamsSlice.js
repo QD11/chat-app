@@ -14,6 +14,7 @@ export const fetchTeams = createAsyncThunk(
     }
 )
 
+
 const teamsAdapter = createEntityAdapter({
     selectId: ({ id }) => id
 })

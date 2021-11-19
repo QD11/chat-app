@@ -23,10 +23,8 @@ const MessageForm = ({sendMessage, team_id}) => {
                 type="text" 
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Message...">
-
-                </input>
-                <button type="submit" disabled={chatInput? false:true}>Submit</button>
+                placeholder="Message..."/>
+                <button type="submit" disabled={chatInput? false:true}>Send</button>
             </ChatForm>
         </>
     )
@@ -35,9 +33,11 @@ const MessageForm = ({sendMessage, team_id}) => {
 
 const ChatForm = styled.form`
     .ChatInput {
-        width: 100%;
+        width: 50%;
         max-width: none;
+        
     }
+
 `
 
 export default MessageForm

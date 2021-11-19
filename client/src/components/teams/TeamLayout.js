@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState} from 'react'
+import React, { useEffect, useContext } from 'react'
 import TeamList from './TeamList';
 import MessageBox from '../messages/MessageBox'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +13,6 @@ const TeamLayout = ({path, image, setImage}) => {
     const cable = useContext(ActionCableContext)
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
-
     const teams = useSelector(teamsSelectors.selectAll)
     const messages = useSelector(messagesSelectors.selectAll)
     const memberships = useSelector(membershipsSelectors.selectAll)
