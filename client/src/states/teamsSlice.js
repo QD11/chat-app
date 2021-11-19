@@ -1,8 +1,6 @@
 import {
     createEntityAdapter,
-    createSlice,
-    createSelector,
-    createAsyncThunk } from '@reduxjs/toolkit'
+    createSlice} from '@reduxjs/toolkit'
 
 const teamsAdapter = createEntityAdapter()
 const initialState = teamsAdapter.getInitialState()

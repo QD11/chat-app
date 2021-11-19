@@ -1,7 +1,6 @@
 import {
     createEntityAdapter,
-    createSlice,
-    createSelector,} from '@reduxjs/toolkit'
+    createSlice} from '@reduxjs/toolkit'
 
 const messagesAdapter = createEntityAdapter()
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {teamsSelectors} from '../../states/teamsSlice'
-// import Avatar from 'react-avatar';
+
 import {useParams} from 'react-router-dom'
 import TeamMember from './TeamMember';
 

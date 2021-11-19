@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { getUser } from './states/usersSlice'
+import React, {useState} from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import { useDispatch } from 'react-redux'
+// import { getUser } from './states/usersSlice'
 import TeamLayout from './components/teams/TeamLayout'
 import SignupForm from './components/homepage/SignupForm'
 import Login from './pages/Login'
 import Navbar from './components/Navbar'
 
 function App() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [image, setImage] = useState("")
 
-  useEffect(() => {
-    // auto-login
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => dispatch(getUser(user)));
-        //history.push('/teams')
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   // auto-login
+  //   fetch("/me").then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((user) => dispatch(getUser(user)));
+  //       //history.push('/teams')
+  //     }
+  //   });
+  // }, []);
 
     // if (!user) return <Login setUser={setUser} />;
   return (
