@@ -15,9 +15,7 @@ export const fetchTeams = createAsyncThunk(
 )
 
 
-const teamsAdapter = createEntityAdapter({
-    selectId: ({ id }) => id
-})
+const teamsAdapter = createEntityAdapter()
 const initialState = teamsAdapter.getInitialState({})
 
 const teamsSlice = createSlice({
@@ -30,6 +28,7 @@ const teamsSlice = createSlice({
         getData(state, action) {
             return [...action.payload]
         },
+        removeTeams: teamsAdapter.removeAll,
     },
     // extraReducers: {
     //     [fetchTeams.pending]: (state) => {
@@ -47,5 +46,5 @@ const teamsSlice = createSlice({
 
 export const teamsSelectors = teamsAdapter.getSelectors(state => state.teamsInfo)
 
-export const { getTeams, getData, updateLatestMessage, updateTeam, addTeam} = teamsSlice.actions
+export const { getTeams, getData, updateLatestMessage, updateTeam, addTeam, removeTeams} = teamsSlice.actions
 export default teamsSlice.reducer

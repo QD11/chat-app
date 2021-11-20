@@ -31,7 +31,7 @@ function App() {
           {user  ? 
             <>
               <Navbar image={image} setImage={setImage}/> 
-              <TeamLayout  path='/teams' image={image} setImage={setImage}/>
+              {user ? <TeamLayout  path='/teams' image={image} setImage={setImage} /> : null }
             </>
             : null}
         </Route>

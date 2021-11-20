@@ -15,9 +15,7 @@ export const fetchMessages = createAsyncThunk(
     }
 )
 
-const messagesAdapter = createEntityAdapter({
-    selectId: ({ id }) => id
-})
+const messagesAdapter = createEntityAdapter()
 
 const initialState = messagesAdapter.getInitialState()
 
@@ -40,10 +38,11 @@ const messagesSlice = createSlice({
             messagesAdapter.setOne(state, message)
         },
         addMultipleMessages: messagesAdapter.addMany,
+        removeMultipleMessages: messagesAdapter.removeAll,
     }
 })
 
 export const messagesSelectors = messagesAdapter.getSelectors(state => state.messages)
 
-export const { messageReceived, addMultipleMessages, getMessages, addMessage } = messagesSlice.actions
+export const { messageReceived, addMultipleMessages, getMessages, addMessage, removeMultipleMessages } = messagesSlice.actions
 export default messagesSlice.reducer

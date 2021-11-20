@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import {useHistory, Link} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import {logOutUser} from '../states/usersSlice'
 import Avatar from 'react-avatar';
 import Modal from './Modal'
 import styled from 'styled-components'
 import { MdLogout } from 'react-icons/md'
 import {BiMessageAdd} from 'react-icons/bi'
 import AvatarGroup from 'react-avatar-group'
+import {logOutUser} from '../states/usersSlice'
+import {removeAllUsers} from '../states/allusersSlice'
+import {removeMemberships} from '../states/membershipsSlice'
+import {removeMultipleMessages} from '../states/messagesSlice'
+import {removeTeams} from '../states/teamsSlice'
+
 // import { motion } from "framer-motion"
 
 function Navbar({image, setImage}) {
@@ -20,8 +25,14 @@ function Navbar({image, setImage}) {
     const onLogOut = () => {
         fetch('/logout', {
             method: 'DELETE',   
-        }).then(() => dispatch(logOutUser()))
-        history.push('/')
+        }).then(() => {
+            history.push('/')
+            dispatch(logOutUser())
+            dispatch(removeAllUsers())
+            dispatch(removeMemberships())
+            dispatch(removeMultipleMessages())
+            dispatch(removeTeams())
+        })
     }
 
     return (

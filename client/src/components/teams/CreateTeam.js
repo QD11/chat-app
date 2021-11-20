@@ -78,6 +78,7 @@ const CreateTeam = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
+        console.log('hi')
         const preState = JSON.parse(JSON.stringify(state));
         const preMembers = [...preState.members.items]
         preMembers.forEach(user => user.id = parseInt(user.id))
@@ -89,8 +90,8 @@ const CreateTeam = () => {
             content: formData.content,
             user_id: userInfo.id,
         }
-        //channel.send(data)
-        console.log(data)
+        channel.send(data)
+        // console.log(data)
         //reset the states
         setFormData({
             name: '',
@@ -116,7 +117,8 @@ const CreateTeam = () => {
     return (
         <BigDiv>
             <form onSubmit={handleFormSubmit}>
-            <SubmitBut type="submit" disabled={!state.members.items.length || !formData.name || !formData.description  ? true: false}>CREATE</SubmitBut>
+            <SubmitBut type="submit" onClick={handleFormSubmit} disabled={!state.members.items.length || !formData.name || !formData.description  ? true: false}>CREATE</SubmitBut>
+            {/* <SubmitBut type="submit" onClick={handleFormSubmit}>CREATE</SubmitBut> */}
                 <div>
                     <LeftDiv >
                         <label>Chat Name</label>

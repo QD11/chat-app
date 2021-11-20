@@ -23,10 +23,11 @@ const allUsersSlice = createSlice({
     reducers: {
         getAllUsers: allUsersAdapter.addMany,
         setAllUsers: allUsersAdapter.setMany,
+        removeAllUsers: allUsersAdapter.removeAll,
     },
 })
 
 export const allUsersSelectors = allUsersAdapter.getSelectors(state => state.allUsersInfo)
 
-export const {getAllUsers, setAllUsers} = allUsersSlice.actions
+export const {getAllUsers, setAllUsers, removeAllUsers} = allUsersSlice.actions
 export default allUsersSlice.reducer
