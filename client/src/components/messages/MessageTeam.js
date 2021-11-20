@@ -44,7 +44,7 @@ const MessageTeam = () => {
                     name: team.name
                 }
             }
-            //not getting added
+            //not getting addedaa
             //update if it exists but not add itif it doesn't exist
             dispatch(setMembership(newData))
         })
