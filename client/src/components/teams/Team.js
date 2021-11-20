@@ -20,8 +20,8 @@ const Team = ({team, membership}) => {
 
     const usersToRender = team.users?.filter(user => user.id !== userInfo.id)
     const namesToRender = usersToRender.map(user => user.name)
-    let names = namesToRender.join(' ').slice(0,10)
-    if (namesToRender.join(' ').length > 10) {
+    let names = namesToRender.join(' ').slice(0,12)
+    if (namesToRender.join(' ').length > 12) {
         names += '...'
     }
 
@@ -40,10 +40,10 @@ const Team = ({team, membership}) => {
             <SecondDiv>
                 <span>{names}</span>
                 {messages.length ? 
-                <span>{messages.at(-1).content.length < 8 ? messages.at(-1).content : messages.at(-1).content.substring(0,8) + "..."}</span>
+                <span>{messages.at(-1).content.length < 10 ? messages.at(-1).content : messages.at(-1).content.substring(0,10) + "..."}</span>
                 : null}
             </SecondDiv>
-                {unreadMessages.length > 0 && currentID !== team.id ? <ThirdDiv><UnreadSpan>{unreadMessages.length}</UnreadSpan></ThirdDiv>: null}
+                {/* {unreadMessages.length > 0 && currentID !== team.id ? <ThirdDiv><UnreadSpan></UnreadSpan></ThirdDiv>: null} */}
             {/* <span>{team.name}</span> */}
         </LinkTeam>
     )
@@ -69,7 +69,7 @@ const SecondDiv = styled.div.attrs(props => ({
 }))`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 
 `
 
@@ -78,7 +78,7 @@ const ThirdDiv = styled.div.attrs(props => ({
 }))`
     background-color: #d6a2a2;
     border-radius: 50%;
-    width: 10%;
+    width: 1%;
     padding: 4px;
     text-align: center;
 `

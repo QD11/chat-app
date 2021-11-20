@@ -2,7 +2,11 @@ import {
     createEntityAdapter,
     createSlice,
     createSelector,
-    createAsyncThunk } from '@reduxjs/toolkit'
+    createAsyncThunk
+} from '@reduxjs/toolkit'
+import { useDispatch, useSelector } from 'react-redux'
+// import { getStore } from 'redux'
+
 
     export const fetchMemberships = createAsyncThunk(
         'memberships/fetchMemberships',
@@ -22,12 +26,16 @@ const membershipsSlice = createSlice({
     initialState,
     reducers: {
         getMemberships: membershipsAdapter.addMany,
-        setMembership: membershipsAdapter.setOne,
+        //setMembership: membershipsAdapter.updateOne,
         addMembership: membershipsAdapter.addOne,
+        removeMemberships: membershipsAdapter.removeAll,
+        setMembership(state, action) {
+            console.log('hey')
+        }
     },
 })
 
 export const membershipsSelectors = membershipsAdapter.getSelectors(state => state.membershipsInfo)
 
-export const {getMemberships, setMembership, addMembership} = membershipsSlice.actions
+export const {getMemberships, setMembership, addMembership, removeMemberships} = membershipsSlice.actions
 export default membershipsSlice.reducer

@@ -31,6 +31,7 @@ const TeamLayout = ({path, image, setImage}) => {
         },
         {
             received: (data) => {
+                console.log(data)
                 if (data.users.find(user => user.id === userInfo.id)) {
                     dispatch(addTeam(data))
                 }}
@@ -53,11 +54,11 @@ const TeamLayout = ({path, image, setImage}) => {
                 dispatch(addMembership(data))
             }
         })
-    }, [userInfo, dispatch])
+    }, [userInfo])
 
 
-    if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0 && allUsersInfo.length > 0) {
-        
+    // if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0 && allUsersInfo.length > 0) {
+    if (true) {    
         return (
             <SplitDiv>
                 <LeftSideDiv>

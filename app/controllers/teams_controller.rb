@@ -15,7 +15,9 @@ class TeamsController < ApplicationController
     def teams_specific_to_users
         user = User.find(params[:user_id])
         teams = Team.joins(:memberships).where(memberships: {user_id: user.id})
-        render json: teams, each_serializer: TeamUserSerializer
+        if teams
+            render json: teams, each_serializer: TeamUserSerializer
+        end
     end
 
 end
