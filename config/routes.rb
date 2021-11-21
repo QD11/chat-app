@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :messages
   resources :memberships
-  resources :teams
+  resources :teams, only: [:index]
   
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
