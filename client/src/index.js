@@ -14,7 +14,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 // const store = createStore({reducer})
 
 const CableApp = {}
-CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable') // change to whatever port your server uses
+CableApp.cable = actionCable.createConsumer('/cable') // change to whatever port your server uses
 export const ActionCableContext = createContext()
 
 ReactDOM.render(
