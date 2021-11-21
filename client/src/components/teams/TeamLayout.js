@@ -21,10 +21,15 @@ const TeamLayout = ({path, image, setImage}) => {
     const allUsersInfo = useSelector(allUsersSelectors.selectAll)
 
     useEffect(()=> {
-        dispatch(fetchTeams(`http://localhost:3000/${userInfo.id}/teams`))
-        dispatch(fetchMessages(`http://localhost:3000/${userInfo.id}/teams/messages`))
-        dispatch(fetchMemberships(`http://localhost:3000/${userInfo.id}/memberships`))
-        dispatch(fetchAllUsers("http://localhost:3000/users"))
+        // dispatch(fetchTeams(`http://localhost:3000/${userInfo.id}/teams`))
+        // dispatch(fetchMessages(`http://localhost:3000/${userInfo.id}/teams/messages`))
+        // dispatch(fetchMemberships(`http://localhost:3000/${userInfo.id}/memberships`))
+        // dispatch(fetchAllUsers("http://localhost:3000/users"))
+
+        dispatch(fetchTeams(`/${userInfo.id}/teams`))
+        dispatch(fetchMessages(`/${userInfo.id}/teams/messages`))
+        dispatch(fetchMemberships(`/${userInfo.id}/memberships`))
+        dispatch(fetchAllUsers("/users"))
 
         cable.subscriptions.create({
             channel: 'NewTeamChannel'
