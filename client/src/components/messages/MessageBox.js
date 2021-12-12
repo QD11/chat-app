@@ -5,9 +5,15 @@ import CreateTeam from '../teams/CreateTeam'
 import styled from 'styled-components'
 import TeamMembers from '../teams/TeamMembers'
 
+import { teamsSelectors, updateTeam } from '../../states/teamsSlice'
+import { messagesSelectors, addMessage } from '../../states/messagesSlice'
+import { setMembership } from '../../states/membershipsSlice'
+
 const MessageBox = ({path, image, setImage}) => {
-    const abc = useParams()
-    console.log('hey')
+    const {team_id} = useParams()
+    const userInfo = useSelector(state => state.usersInfo)
+    const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
+    const teamsInfo = useSelector(teamsSelectors.selectAll)
 
     return (
         <>
@@ -21,12 +27,17 @@ const MessageBox = ({path, image, setImage}) => {
                 
                 //render teams
                 <Route path={`${path}/:team_id`} >
-                    <MidSideDiv>
-                        <MessageTeam />
-                    </MidSideDiv>
-                    <RightSideDiv>
-                        <TeamMembers image={image} setImage={setImage}/>
-                    </RightSideDiv>
+                    {teamsInfo.ids.length > 0 ?  
+                    <>
+                        <MidSideDiv>
+                            <MessageTeam />
+                        </MidSideDiv>
+                        <RightSideDiv>
+                            <TeamMembers image={image} setImage={setImage}/>
+                        </RightSideDiv>
+                    </>
+                    : null
+                    }
                 </Route>
             </Switch>
         </>
