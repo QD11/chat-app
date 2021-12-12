@@ -33,7 +33,7 @@ function LoginForm() {
           r.json().then((user) => {
             // setUser(user)
             dispatch(getUser(user))
-            history.push("/teams")
+            history.push("/team")
           });
         } else {
           r.json().then((error) => setErrors(error));

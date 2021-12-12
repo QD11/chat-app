@@ -36,7 +36,6 @@ const TeamLayout = ({path, image, setImage}) => {
         },
         {
             received: (data) => {
-                console.log(data)
                 if (data.users.find(user => user.id === userInfo.id)) {
                     dispatch(addTeam(data))
                 }}

@@ -27,7 +27,7 @@ const MessageTeam = () => {
             id: membership_id,
             last_read_at: currentDateTime,
         }
-        fetch(`http://localhost:3000/memberships/${membership_id}`, {
+        fetch(`/memberships/${membership_id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)

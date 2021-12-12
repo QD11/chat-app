@@ -27,11 +27,11 @@ function App() {
     <Router>
       
       <Switch>
-        <Route path='/teams' >
+        <Route path='/team' >
           {user  ? 
             <>
               <Navbar image={image} setImage={setImage}/> 
-              {user ? <TeamLayout  path='/teams' image={image} setImage={setImage} /> : null }
+              {user ? <TeamLayout  path='/team' image={image} setImage={setImage} /> : null }
             </>
             : null}
         </Route>

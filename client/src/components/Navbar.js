@@ -39,7 +39,7 @@ function Navbar({image, setImage}) {
         <NavDiv >
             {/* <h3>{userInfo.name}</h3> */}
             <div>
-                <NewMessage onClick={() => history.push('/teams/create')}/>
+                <NewMessage onClick={() => history.push('/team/create')}/>
             </div>
             <RightDiv>
                 <AvatarGroup avatars={[userInfo.name]} initialCharacters={1} max={1} size={50} shadow={4}/>

@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { ActionCableContext } from '../index'
 import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const MessagesList = () => {
     const cable = useContext(ActionCableContext)
     const [channel, setChannel] = useState(null)
     const {team_id} = useParams()
+    const user = useSelector(state => state.usersInfo)
 
     useEffect(() => {
         //create a subscription to MessagesChannel
@@ -24,11 +26,7 @@ const MessagesList = () => {
     }, [])
 
     const {user_id} = {
-        user_id: 1
-    }
-
-    const {content} = {
-        content: "hi Xinyi"
+        user_id: user.id
     }
 
     const sendMessage = (content) => {

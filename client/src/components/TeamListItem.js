@@ -14,7 +14,6 @@ const TeamListItem = ({team}) => {
         },
         {
             received: (data) => {
-                console.log(data)
                 dispatch(messageReceived(data))
             }
         }
@@ -22,7 +21,6 @@ const TeamListItem = ({team}) => {
     }, [team])
 
     const stuff = useSelector(state => state.messageSlice.entities)
-    console.log(typeof stuff, stuff)
 
     return (
         <div>
