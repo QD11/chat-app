@@ -68,14 +68,13 @@ const MessageTeam = () => {
     }, [userInfo, team_id])
 
     useEffect(() => {
+        if (team) {
         cable.subscriptions.create({
             channel: "MessagesChannel",
             id: parseInt(team_id)
         },
         {
             received: (data) => {
-                const teamsInfo = useSelector(teamsSelectors.selectAll)
-                const team = teamsInfo.find(team => team.id === parseInt(team_id))
                 const userMatch = team.users.find(user => user.id === data.user_id)
                 const newData = {
                     id: data.id,
@@ -90,6 +89,7 @@ const MessageTeam = () => {
                 }
                 dispatch(addMessage(newData))
             }})
+        }
     }, [userInfo, team_id])
 
     const {user_id} = {

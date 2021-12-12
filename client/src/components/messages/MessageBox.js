@@ -16,7 +16,6 @@ const MessageBox = ({path, image, setImage}) => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
     const teamsInfo = useSelector(teamsSelectors.selectAll)
 
-    console.log(teamsInfo)
 
     return (
         <>
