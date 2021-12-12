@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Navbar from './components/Navbar'
 
 function App() {
+  const history = useHistory()
   const dispatch = useDispatch()
   const [image, setImage] = useState("")
   const user = useSelector(state => state.usersInfo)
