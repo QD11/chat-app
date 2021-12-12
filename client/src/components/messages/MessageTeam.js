@@ -19,7 +19,7 @@ const MessageTeam = () => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
     const teamsInfo = useSelector(teamsSelectors.selectAll)
     const team = teamsInfo.find(team => team.id === parseInt(team_id))
-    console.log(team)
+    
     // const membership_id = team.memberships.find(membership => membership.user.id === userInfo.id).id
 
     // const updateLastRead = () => {
@@ -74,6 +74,7 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
+                console.log(team)
                 const userMatch = team.users.find(user => user.id === data.user_id)
                 const newData = {
                     id: data.id,
