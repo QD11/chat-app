@@ -26,7 +26,7 @@ const Team = ({team, membership}) => {
     }
 
     return (
-        <LinkTeam to={`/teams/${team.id}`}>
+        <LinkTeam to={`/team/${team.id}`}>
             <FirstDiv>
                 <AvatarGroup
                     avatars={namesToRender}

@@ -11,7 +11,6 @@ const TeamList = () => {
     const memberships = useSelector(membershipsSelectors.selectAll)
 
     if (messages.length > 0 && teamsInfo.every(team => team) && memberships.every(team=>team)) {
-        console.log(messages)
         const lastMessages = []
         teamsInfo.forEach(team => {
             const messagesToTeam = messages.filter(message => message.team.id === team.id)
