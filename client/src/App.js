@@ -19,8 +19,11 @@ function App() {
     .then((r) => {
       if (r.ok) {
         r.json()
-        .then((user) => dispatch(getUser(user)));
-        history.push('/team')
+        .then((user) => {
+          console.log(user)
+          dispatch(getUser(user))
+          history.push('/team')
+        });
       }
     });
   }, []);
