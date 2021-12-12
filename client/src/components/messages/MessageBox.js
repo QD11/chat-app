@@ -4,6 +4,7 @@ import MessageTeam from './MessageTeam'
 import CreateTeam from '../teams/CreateTeam'
 import styled from 'styled-components'
 import TeamMembers from '../teams/TeamMembers'
+import {useSelector} from 'react-redux'
 
 import { teamsSelectors, updateTeam } from '../../states/teamsSlice'
 import { messagesSelectors, addMessage } from '../../states/messagesSlice'
