@@ -74,7 +74,8 @@ const MessageTeam = () => {
         },
         {
             received: (data) => {
-                console.log(team)
+                const teamsInfo = useSelector(teamsSelectors.selectAll)
+                const team = teamsInfo.find(team => team.id === parseInt(team_id))
                 const userMatch = team.users.find(user => user.id === data.user_id)
                 const newData = {
                     id: data.id,
