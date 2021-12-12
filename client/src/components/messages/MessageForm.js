@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import { useEffect } from 'react/cjs/react.development'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 
 const MessageForm = ({sendMessage, team_id}) => {
@@ -18,13 +17,14 @@ const MessageForm = ({sendMessage, team_id}) => {
     return (
         <>
             <ChatForm onSubmit={handleSubmit}>
-                <input 
-                className="ChatInput" 
-                type="text" 
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Message..."/>
-                <button type="submit" disabled={chatInput? false:true}>Send</button>
+                    <input 
+                        className="ChatInput" 
+                        type="text" 
+                        value={chatInput}
+                        onChange={e => setChatInput(e.target.value)}
+                        placeholder="Message..."
+                    />
+                    <button type="submit" disabled={chatInput? false:true}>Send</button>
             </ChatForm>
         </>
     )
