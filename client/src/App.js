@@ -19,12 +19,15 @@ function App() {
       if (r.ok) {
         r.json()
         .then((user) => dispatch(getUser(user)));
-        //history.push('/teams')
+        history.push('/team')
       }
     });
   }, []);
 
-  if (!user) return <Login />;
+  // if (!user) return <Login />;
+  if (!user) {
+    history.push('/')
+  }
 
   return (
     <Router>
