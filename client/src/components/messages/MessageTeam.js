@@ -90,7 +90,7 @@ const MessageTeam = () => {
                 dispatch(addMessage(newData))
             }})
         }
-    }, [userInfo, team_id])
+    }, [userInfo, team_id, team])
 
     const {user_id} = {
         user_id: userInfo.id
