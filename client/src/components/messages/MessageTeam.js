@@ -51,7 +51,7 @@ const MessageTeam = () => {
     // }
 
     useEffect(() => {
-        updateLastRead()
+        // updateLastRead()
         //create a subscription to MessagesChannel
         const channel = cable.subscriptions.create({
             channel: 'MessagesChannel',
@@ -62,7 +62,7 @@ const MessageTeam = () => {
         //unsubscribe
         return () => {
             channel.unsubscribe()
-            updateLastRead()
+            // updateLastRead()
         }
     }, [userInfo, team_id])
 
