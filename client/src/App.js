@@ -8,21 +8,24 @@ import Login from './pages/Login'
 import Navbar from './components/Navbar'
 
 function App() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [image, setImage] = useState("")
   const user = useSelector(state => state.usersInfo)
 
   useEffect(() => {
     // auto-login
-    fetch("/me").then((r) => {
+    fetch("/me")
+    .then((r) => {
       if (r.ok) {
-        r.json().then((user) => dispatch(getUser(user)));
+        r.json()
+        .then((user) => dispatch(getUser(user)));
         //history.push('/teams')
       }
     });
   }, []);
 
-    // if (!user) return <Login setUser={setUser} />;
+  if (!user) return <Login />;
+
   return (
     <Router>
       
