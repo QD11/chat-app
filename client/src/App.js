@@ -37,13 +37,12 @@ function App() {
 
   return (
     <Router>
-      
       <Switch>
         <Route path='/team' >
           {Object.keys(user).length !== 0  ? 
             <>
               <Navbar image={image} setImage={setImage}/> 
-              <TeamLayout   image={image} setImage={setImage} />
+              <TeamLayout path='/team' image={image} setImage={setImage} />
             </>
             : null}
         </Route>
@@ -54,21 +53,6 @@ function App() {
           <Login />
         </Route>
       </Switch>
-    
-      {/* <TeamList /> */}
-
-      {/* {teams.map(team => <TeamListItem key={team.id} team={team}/>)}
-
-      <Switch>
-        <div className="App">
-          <Route path="/:team_id">
-            <MessagesList />
-          </Route>
-          <Route path="/new">
-            <Login/>
-          </Route>
-        </div>
-      </Switch> */}
     </Router>
   );
 }
