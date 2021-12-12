@@ -5,7 +5,7 @@ import CreateTeam from '../teams/CreateTeam'
 import styled from 'styled-components'
 import TeamMembers from '../teams/TeamMembers'
 
-const MessageBox = ({image, setImage}) => {
+const MessageBox = ({path, image, setImage}) => {
 
     const abc = useParams()
 
@@ -13,14 +13,14 @@ const MessageBox = ({image, setImage}) => {
         <>
             <Switch>
                 //create new teams
-                <Route exact path={`/team/create`}>
+                <Route exact path={`${path}/create`}>
                     <MidSideDiv>
                         < CreateTeam/>
                     </MidSideDiv>
                 </Route>
                 
                 //render teams
-                <Route path={`/team/:team_id`} >
+                <Route path={`${path}/:team_id`} >
                     <MidSideDiv>
                         <MessageTeam />
                     </MidSideDiv>
