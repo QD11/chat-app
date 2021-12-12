@@ -19,36 +19,36 @@ const MessageTeam = () => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
     const teamsInfo = useSelector(teamsSelectors.selectAll)
     const team = teamsInfo.find(team => team.id === parseInt(team_id))
-    const membership_id = team.memberships.find(membership => membership.user.id === userInfo.id).id
+    // const membership_id = team.memberships.find(membership => membership.user.id === userInfo.id).id
 
-    const updateLastRead = () => {
-        const currentDateTime = (new Date).toISOString()
-        const data = {
-            id: membership_id,
-            last_read_at: currentDateTime,
-        }
-        fetch(`/memberships/${membership_id}`, {
-            method: "PATCH",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(r => r.json())
-        .then(data => {
-            const newData = {
-                id: data.id,
-                last_read_at: data.last_read_at,
-                user: userInfo,
-                team: {
-                    id: team.id,
-                    description: team.description,
-                    name: team.name
-                }
-            }
-            //not getting addedaa
-            //update if it exists but not add itif it doesn't exist
-            dispatch(setMembership(newData))
-        })
-    }
+    // const updateLastRead = () => {
+    //     const currentDateTime = (new Date).toISOString()
+    //     const data = {
+    //         id: membership_id,
+    //         last_read_at: currentDateTime,
+    //     }
+    //     fetch(`/memberships/${membership_id}`, {
+    //         method: "PATCH",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then(r => r.json())
+    //     .then(data => {
+    //         const newData = {
+    //             id: data.id,
+    //             last_read_at: data.last_read_at,
+    //             user: userInfo,
+    //             team: {
+    //                 id: team.id,
+    //                 description: team.description,
+    //                 name: team.name
+    //             }
+    //         }
+    //         //not getting addedaa
+    //         //update if it exists but not add itif it doesn't exist
+    //         dispatch(setMembership(newData))
+    //     })
+    // }
 
     useEffect(() => {
         updateLastRead()
