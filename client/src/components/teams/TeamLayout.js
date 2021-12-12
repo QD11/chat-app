@@ -11,7 +11,7 @@ import { ActionCableContext } from '../../index'
 import { getMemberships, fetchMemberships, membershipsSelectors, addMembership } from '../../states/membershipsSlice'
 import {BiMessageAdd} from 'react-icons/bi'
 
-const TeamLayout = ({path, image, setImage}) => {
+const TeamLayout = ({ image, setImage}) => {
     const cable = useContext(ActionCableContext)
     const dispatch = useDispatch()
     const userInfo = useSelector(state => state.usersInfo)
@@ -69,7 +69,7 @@ const TeamLayout = ({path, image, setImage}) => {
                     <TeamList />
                 </LeftSideDiv>
                 <Switch>
-                    <Route path={`${path}/:team_id`}>
+                    <Route path={`/team/:team_id`}>
                         <MessageBox path={path} image={image} setImage={setImage}/>
                     </Route>
                 </Switch>

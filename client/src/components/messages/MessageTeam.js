@@ -103,7 +103,7 @@ const MessageTeam = () => {
             <ScrollToBottom className="scrollbot">
                 {messages.length ? <MessageList messages={messages} /> : null}
             </ScrollToBottom>
-            <MessageForm sendMessage={sendMessage} team_id={team_id}/>
+            {/* <MessageForm sendMessage={sendMessage} team_id={team_id}/> */}
         </>
     )
 }
