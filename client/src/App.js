@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   // if (!user) return <Login />;
-  if (!user) {
+  if (Object.keys(user).length === 0) {
     history.push('/')
   }
 
@@ -40,7 +40,7 @@ function App() {
       
       <Switch>
         <Route path='/team' >
-          {user  ? 
+          {Object.keys(user).length !== 0  ? 
             <>
               <Navbar image={image} setImage={setImage}/> 
               <TeamLayout   image={image} setImage={setImage} />
