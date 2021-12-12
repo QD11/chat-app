@@ -62,7 +62,7 @@ const TeamLayout = ({path, image, setImage}) => {
 
 
     // if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0 && allUsersInfo.length > 0) {
-    if (true) {    
+    // if (true) {    
         return (
             <SplitDiv>
                 <LeftSideDiv>
@@ -75,9 +75,9 @@ const TeamLayout = ({path, image, setImage}) => {
                 </Switch>
             </SplitDiv>
         )
-    } else {
-        return null
-    }
+    // } else {
+    //     return null
+    // }
 }
 
 const NewMessage = styled(BiMessageAdd)`

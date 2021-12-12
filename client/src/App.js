@@ -27,7 +27,7 @@ function App() {
       }
     });
   }, []);
-  console.log(user)
+  
 
   // if (!user) return <Login />;
   // if (Object.keys(user).length === 0) {

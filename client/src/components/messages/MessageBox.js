@@ -6,8 +6,8 @@ import styled from 'styled-components'
 import TeamMembers from '../teams/TeamMembers'
 
 const MessageBox = ({path, image, setImage}) => {
-
     const abc = useParams()
+    console.log('hey')
 
     return (
         <>

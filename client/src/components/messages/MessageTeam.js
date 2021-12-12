@@ -22,6 +22,7 @@ const MessageTeam = () => {
     const membership_id = team.memberships.find(membership => membership.user.id === userInfo.id).id
 
     const updateLastRead = () => {
+        console.log('aaa')
         const currentDateTime = (new Date).toISOString()
         const data = {
             id: membership_id,
