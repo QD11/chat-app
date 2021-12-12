@@ -16,6 +16,8 @@ const MessageBox = ({path, image, setImage}) => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
     const teamsInfo = useSelector(teamsSelectors.selectAll)
 
+    console.log(teamsInfo)
+
     return (
         <>
             <Switch>
@@ -28,7 +30,7 @@ const MessageBox = ({path, image, setImage}) => {
                 
                 //render teams
                 <Route path={`${path}/:team_id`} >
-                    {teamsInfo.ids.length > 0 ?  
+                    {teamsInfo.ids.length ?  
                     <>
                         <MidSideDiv>
                             <MessageTeam />

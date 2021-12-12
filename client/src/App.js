@@ -22,7 +22,6 @@ function App() {
         .then((user) => {
           console.log(user)
           dispatch(getUser(user))
-          history.push('/team')
         });
       }
     });
