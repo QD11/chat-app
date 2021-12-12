@@ -19,6 +19,7 @@ const MessageTeam = () => {
     const messages = useSelector(messagesSelectors.selectAll).filter(message => message.team.id === parseInt(team_id))
     const teamsInfo = useSelector(teamsSelectors.selectAll)
     const team = teamsInfo.find(team => team.id === parseInt(team_id))
+    console.log(team)
     // const membership_id = team.memberships.find(membership => membership.user.id === userInfo.id).id
 
     // const updateLastRead = () => {
