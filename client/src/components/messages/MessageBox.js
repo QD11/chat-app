@@ -30,7 +30,7 @@ const MessageBox = ({path, image, setImage}) => {
                 
                 //render teams
                 <Route path={`${path}/:team_id`} >
-                    {teamsInfo.ids.length ?  
+                    {teamsInfo.length ?  
                     <>
                         <MidSideDiv>
                             <MessageTeam />
