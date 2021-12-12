@@ -33,6 +33,8 @@ function App() {
     history.push('/')
   }
 
+  console.log(user)
+
   return (
     <Router>
       
@@ -41,7 +43,7 @@ function App() {
           {user  ? 
             <>
               <Navbar image={image} setImage={setImage}/> 
-              {user ? <TeamLayout  path='/team' image={image} setImage={setImage} /> : null }
+              <TeamLayout   image={image} setImage={setImage} />
             </>
             : null}
         </Route>
