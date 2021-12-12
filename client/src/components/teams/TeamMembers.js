@@ -11,7 +11,7 @@ function TeamMembers({image, setImage}) {
 
     return (
         <div className="team-members">
-            <h2>{team.name}</h2>
+            <h2>{team? team.name : null}</h2>
             {team.users.map(member => <TeamMember member={member} image={image} setImage={setImage} key={member.id}/>)}
         </div>
     )
