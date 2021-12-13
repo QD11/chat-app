@@ -60,6 +60,15 @@ const TeamLayout = ({path, image, setImage}) => {
         })
     }, [userInfo])
 
+    useEffect(() => {
+        teams.forEach(team => {
+            cable.subscriptions.create({
+                channel: 'MessagesChannel',
+                id: team.id
+            })
+        })
+    }, [teams])
+
 
     // if (teams.length > 0 && memberships.length > 0 &&  messages.length > 0 && allUsersInfo.length > 0) {
     // if (true) {    
