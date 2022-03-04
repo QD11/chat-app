@@ -11,7 +11,7 @@ An application where users can send real-time messages between friends.
 ## Technologies
 ### Front-End
 * [React](https://reactjs.org/): Javascript Framework
-* [Redux](https://redux.js.org/): a library for managing and update states
+* [Redux](https://redux.js.org/): a library for managing and updating states
 ### Back-End
 * [Ruby on Rails](https://rubyonrails.org/): server-side web application framework
 * [Action Cable](https://guides.rubyonrails.org/action_cable_overview.html): integrates WebSocket, allowing real-time features
